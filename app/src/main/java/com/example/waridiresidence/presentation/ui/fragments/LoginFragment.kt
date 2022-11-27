@@ -1,6 +1,7 @@
 package com.example.waridiresidence.presentation.ui.fragments
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import android.provider.Settings
 import android.view.LayoutInflater
@@ -12,6 +13,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.waridiresidence.R
 import com.example.waridiresidence.data.model.modelrequest.LoginRequest
 import com.example.waridiresidence.databinding.FragmentLoginBinding
+import com.example.waridiresidence.presentation.ui.activities.HomeActivity
 import com.example.waridiresidence.util.Resource
 import com.example.waridiresidence.util.hideKeyboard
 import com.example.waridiresidence.presentation.viewmodel.LoginViewModel
@@ -82,7 +84,12 @@ class LoginFragment: BaseFragment<FragmentLoginBinding, LoginViewModel>() {
                         hideProgressBar()
                         response.data?.let { loginResponse ->
                             //navigate to home fragment
-                            findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
+                            //findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
+
+                            //navigate to HomeActivity
+                            Intent(requireContext(), HomeActivity::class.java).also {
+                                requireContext().startActivity(it)
+                            }
                         }
                     }
 
