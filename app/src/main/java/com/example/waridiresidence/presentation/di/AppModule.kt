@@ -3,6 +3,7 @@ package com.example.waridiresidence.presentation.di
 import com.example.waridiresidence.data.api.ApiService
 import com.example.waridiresidence.util.Constants.Companion.BASE_URL
 import com.example.waridiresidence.domain.repository.LoginRepository
+import com.example.waridiresidence.domain.repository.RegisterRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -68,6 +69,12 @@ class AppModule {
     @Provides
     fun provideLoginRepository( apiService: ApiService): LoginRepository{
         return LoginRepository(apiService)
+    }
+
+    @ExperimentalCoroutinesApi
+    @Provides
+    fun providesRegisterRepository(apiService: ApiService): RegisterRepository{
+        return RegisterRepository(apiService)
     }
 
 

@@ -32,7 +32,7 @@ class LoginViewModel @Inject constructor(
         getLogin(loginRequest)
     }
 
-    suspend fun getLogin(loginRequest: LoginRequest) {
+    private suspend fun getLogin(loginRequest: LoginRequest) {
         _loginData.postValue(Event(Resource.Loading()))
 
         try {
@@ -50,7 +50,7 @@ class LoginViewModel @Inject constructor(
 
                         saveUserDataInConstants(response.body()!!)
                     }
-                    else if (response.body()!!.access.isEmpty()){
+                    else if (response.body()!!.access.isNullOrEmpty()){
                         val errorResponse: LoginResponse? = response.body()
                         toast(getApplication(), "Error: An error was encountered while login in ")
                         Log.e(TAG, "Error: An error was encountered while login in ", )
