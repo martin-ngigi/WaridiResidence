@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "611220722532",
+    "project_id": "waridi-residence",
+    "storage_bucket": "waridi-residence.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:611220722532:android:ea1acf53c8951fd1c3a071",
+        "android_client_info": {
+          "package_name": "com.example.waridiresidence"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "611220722532-7pqgvaoglav1pas6tcoobu0gbjovdn3a.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDDeoR4D5_DfmMCRMRO7ndx4NLWQES883c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "611220722532-7pqgvaoglav1pas6tcoobu0gbjovdn3a.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
