@@ -7,6 +7,7 @@ import android.provider.Settings
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
@@ -17,17 +18,22 @@ import com.example.waridiresidence.presentation.ui.activities.HomeActivity
 import com.example.waridiresidence.util.Resource
 import com.example.waridiresidence.util.hideKeyboard
 import com.example.waridiresidence.presentation.viewmodel.LoginViewModel
+import com.example.waridiresidence.util.Utils.toast
+import com.example.waridiresidence.util.Utils.toast2
 import com.example.waridiresidence.util.Utils.validateLoginRequest
+import com.example.waridiresidence.util.toast
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_login.*
 
 @AndroidEntryPoint
-class LoginFragment: BaseFragment<FragmentLoginBinding, LoginViewModel>() {
-    override val viewModel: LoginViewModel by viewModels()
+class LoginFragment: Fragment(R.layout.fragment_login) {
+     val viewModel: LoginViewModel by viewModels()
     lateinit var stringEmail: String
     lateinit var stringPassword: String
     lateinit var deviceId: String
     private val TAG = "LoginPage"
+
+    private lateinit var binding: FragmentLoginBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,19 +43,26 @@ class LoginFragment: BaseFragment<FragmentLoginBinding, LoginViewModel>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        /**
+         * init binding
+         */
+        binding = FragmentLoginBinding.bind(view)
+
         deviceId = Settings.Secure.getString(
             requireContext().contentResolver, Settings.Secure.ANDROID_ID
         )
 
-        doInitializations()
+        doInitializations(view)
     }
 
-    private fun doInitializations() = with(binding){
+    private fun doInitializations(view: View){
         //getTextWatcherLogin()
-        login_button.setOnClickListener{
+        binding.loginButton.setOnClickListener{
             hideKeyboard()
-            stringEmail = login_username.text.toString()
-            stringPassword = login_password.text.toString()
+            //stringEmail = login_username.text.toString()
+            stringEmail = binding.loginUsername.text.toString()
+            //stringPassword = login_password.text.toString()
+            stringPassword = binding.loginPassword.text.toString()
 
             /**
              * invoke data validation method
@@ -60,7 +73,9 @@ class LoginFragment: BaseFragment<FragmentLoginBinding, LoginViewModel>() {
                 getLogin()
             }
             else{
-                toast("${result.error}")
+                //toast(requireContext(),"${result.error}")
+                //or
+                requireContext().toast("${result.error}")
             }
 
 
@@ -95,7 +110,7 @@ class LoginFragment: BaseFragment<FragmentLoginBinding, LoginViewModel>() {
 
                     is Resource.Error ->{
                         hideProgressBar()
-                        response.message?.let { toast(it) }
+                        response.message?.let { requireContext().toast(it) }
                     }
 
                     is Resource.Loading -> {
@@ -114,10 +129,6 @@ class LoginFragment: BaseFragment<FragmentLoginBinding, LoginViewModel>() {
         login_progress.visibility = View.GONE
     }
 
-    override fun getViewBinding(
-        inflater: LayoutInflater,
-        container: ViewGroup?
-    ) = FragmentLoginBinding.inflate(inflater, container, false)
 
 
 

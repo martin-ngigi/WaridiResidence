@@ -9,6 +9,7 @@ import androidx.navigation.ui.navigateUp
 import com.example.waridiresidence.R
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.example.waridiresidence.databinding.ActivityHomeBinding
 import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.my_toolbar.*
 
@@ -18,9 +19,13 @@ class HomeActivity : AppCompatActivity() {
     lateinit var navController: NavController
     lateinit var appBarConfiguration: AppBarConfiguration
 
+    lateinit var binding: ActivityHomeBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_home)
+        //setContentView(R.layout.activity_home)
+        binding = ActivityHomeBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         setSupportActionBar(myToolbar)
         navController = findNavController(R.id.fragmentContainerView)

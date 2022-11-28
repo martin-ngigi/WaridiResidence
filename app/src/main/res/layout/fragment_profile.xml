@@ -1,19 +1,186 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="horizontal"
-    android:gravity="center"
     android:background="@color/white"
     tools:context=".presentation.ui.fragments.ProfileFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:id="@+id/tvSecondFragment"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/black"
-        android:text="Profile Fragment" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:background="@drawable/profile_header">
+    </RelativeLayout>
 
-</LinearLayout>
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cv_image"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginRight="30dp"
+        android:background="@color/white"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="100dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            >
+
+            <com.blogspot.atifsoftwares.circularimageview.CircularImageView
+                android:id="@+id/imageView"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_person"
+                app:c_background_color="@color/white"
+                app:c_border="true"
+                app:c_border_color="@color/green"
+                app:c_border_width="5.5dp"
+                app:c_shadow="true"
+                app:c_shadow_color="#000"
+                app:c_shadow_gravity="end"
+                app:c_shadow_radius="5.5" />
+
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cv_fName"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@+id/cv_image"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginRight="30dp"
+        android:background="@color/white"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="100dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:padding="10dp"
+            android:layout_gravity="center">
+
+            <TextView
+                android:id="@+id/fnameTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="20dp"
+                android:gravity="center"
+                android:padding="2dp"
+                android:text="First Name:"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/tv_fname"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="10dp"
+                android:layout_toRightOf="@+id/fnameTextView"
+                android:drawableEnd="@drawable/ic_baseline_edit_24"
+                android:padding="2dp"
+                android:text="Martin"
+                android:textColor="@color/black" />
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cv_lName"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@+id/cv_fName"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="5dp"
+        android:background="@color/white"
+        android:layout_marginRight="30dp"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="100dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:padding="10dp"
+            android:layout_gravity="center">
+
+            <TextView
+                android:id="@+id/lnameTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="20dp"
+                android:padding="2dp"
+                android:text="Last Name:"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/tv_lname"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/lnameTextView"
+                android:drawableEnd="@drawable/ic_baseline_edit_24"
+                android:padding="2dp"
+                android:text="Wainaina"
+                android:textColor="@color/black" />
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cv_phone"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@+id/cv_lName"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="5dp"
+        android:background="@color/white"
+        android:layout_marginRight="30dp"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="100dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:padding="10dp"
+            android:layout_gravity="center">
+
+            <TextView
+                android:id="@+id/phoneTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="15dp"
+                android:layout_centerVertical="true"
+                android:textColor="@color/black"
+                android:padding="2dp"
+                android:text="Phone Number:" />
+
+            <TextView
+                android:id="@+id/tv_phone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="10dp"
+                android:layout_toRightOf="@+id/phoneTextView"
+                android:drawableEnd="@drawable/ic_baseline_edit_24"
+                android:padding="2dp"
+                android:text="0712345678"
+                android:textColor="@color/black" />
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+
+
+
+
+</RelativeLayout>
