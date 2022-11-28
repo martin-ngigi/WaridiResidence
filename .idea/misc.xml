@@ -3,18 +3,24 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Administrator/AndroidStudioProjects/WaridiResidence/app/src/main/res/drawable/ic_baseline_home_24.xml" value="0.1225" />
         <entry key="..\:/Users/Administrator/AndroidStudioProjects/WaridiResidence/app/src/main/res/drawable/ic_not_favorite.xml" value="0.1" />
+        <entry key="..\:/Users/Administrator/AndroidStudioProjects/WaridiResidence/app/src/main/res/drawable/profile_header.xml" value="0.163" />
         <entry key="..\:/Users/Administrator/AndroidStudioProjects/WaridiResidence/app/src/main/res/layout/activity_auth.xml" value="0.14010416666666667" />
         <entry key="..\:/Users/Administrator/AndroidStudioProjects/WaridiResidence/app/src/main/res/layout/activity_home.xml" value="0.1" />
         <entry key="..\:/Users/Administrator/AndroidStudioProjects/WaridiResidence/app/src/main/res/layout/activity_main.xml" value="0.18" />
-        <entry key="..\:/Users/Administrator/AndroidStudioProjects/WaridiResidence/app/src/main/res/layout/fragment_home.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/Administrator/AndroidStudioProjects/WaridiResidence/app/src/main/res/layout/activity_shop_details.xml" value="0.18333333333333332" />
+        <entry key="..\:/Users/Administrator/AndroidStudioProjects/WaridiResidence/app/src/main/res/layout/background_color_25.xml" value="0.18333333333333332" />
+        <entry key="..\:/Users/Administrator/AndroidStudioProjects/WaridiResidence/app/src/main/res/layout/fragment_home.xml" value="0.22" />
         <entry key="..\:/Users/Administrator/AndroidStudioProjects/WaridiResidence/app/src/main/res/layout/fragment_login.xml" value="0.18" />
-        <entry key="..\:/Users/Administrator/AndroidStudioProjects/WaridiResidence/app/src/main/res/layout/fragment_profile.xml" value="0.14010416666666667" />
+        <entry key="..\:/Users/Administrator/AndroidStudioProjects/WaridiResidence/app/src/main/res/layout/fragment_profile.xml" value="0.21" />
         <entry key="..\:/Users/Administrator/AndroidStudioProjects/WaridiResidence/app/src/main/res/layout/fragment_settings.xml" value="0.14010416666666667" />
         <entry key="..\:/Users/Administrator/AndroidStudioProjects/WaridiResidence/app/src/main/res/layout/fragment_signup.xml" value="0.15" />
         <entry key="..\:/Users/Administrator/AndroidStudioProjects/WaridiResidence/app/src/main/res/layout/fragment_splash.xml" value="0.1" />
         <entry key="..\:/Users/Administrator/AndroidStudioProjects/WaridiResidence/app/src/main/res/layout/header_layout.xml" value="0.14010416666666667" />
+        <entry key="..\:/Users/Administrator/AndroidStudioProjects/WaridiResidence/app/src/main/res/layout/my_toolbar.xml" value="0.14739583333333334" />
         <entry key="..\:/Users/Administrator/AndroidStudioProjects/WaridiResidence/app/src/main/res/layout/progress_bar.xml" value="0.1" />
+        <entry key="..\:/Users/Administrator/AndroidStudioProjects/WaridiResidence/app/src/main/res/layout/row_special.xml" value="0.18333333333333332" />
         <entry key="..\:/Users/Administrator/AndroidStudioProjects/WaridiResidence/app/src/main/res/menu/nav_drawer_menu.xml" value="0.22" />
       </map>
     </option>

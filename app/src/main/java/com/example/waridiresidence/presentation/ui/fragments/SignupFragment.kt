@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.RadioButton
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
@@ -15,18 +16,20 @@ import com.example.waridiresidence.data.model.modelrequest.UserRequest
 import com.example.waridiresidence.databinding.FragmentSignupBinding
 import com.example.waridiresidence.presentation.viewmodel.RegisterViewModel
 import com.example.waridiresidence.util.Resource
+import com.example.waridiresidence.util.Utils.toast
 import com.example.waridiresidence.util.Utils.validateRegisterRequest
 import com.example.waridiresidence.util.hideKeyboard
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.fragment_login.*
 import kotlinx.android.synthetic.main.fragment_signup.*
 import kotlinx.android.synthetic.main.fragment_signup.login_progress
 
 
 @AndroidEntryPoint
-class SignupFragment: BaseFragment<FragmentSignupBinding, RegisterViewModel>() {
+class SignupFragment: Fragment(R.layout.fragment_signup) {
 
-    override val viewModel: RegisterViewModel by viewModels()
+    private lateinit var binding: FragmentSignupBinding
+
+    private val viewModel: RegisterViewModel by viewModels()
     private lateinit var firstName: String
     private lateinit var lastName: String
     private lateinit var email: String
@@ -39,7 +42,12 @@ class SignupFragment: BaseFragment<FragmentSignupBinding, RegisterViewModel>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        register_signin.setOnClickListener {
+        /**
+         * initialize  binding
+         */
+        binding = FragmentSignupBinding.bind(view)
+
+        binding.registerSignin.setOnClickListener {
             //navigate to login
             findNavController().navigate(R.id.action_signupFragment_to_loginFragment)
         }
@@ -50,17 +58,17 @@ class SignupFragment: BaseFragment<FragmentSignupBinding, RegisterViewModel>() {
         setOnCheckedChangeListener()
     }
 
-    private fun doInitializations(view: View) = with(binding) {
-        register_button.setOnClickListener{
+    private fun doInitializations(view: View) {
+        binding.registerButton.setOnClickListener{
             hideKeyboard()
-            firstName = fName.text.toString()
-            lastName = lName.text.toString()
-            email= email_tie.editableText.toString()
-            phone = phone_tie.editableText.toString()
-            password = register_password.editableText.toString()
+            firstName = binding.fName.text.toString()
+            lastName = binding.lName.text.toString()
+            email= binding.emailTie.editableText.toString()
+            phone = binding.phoneTie.editableText.toString()
+            password = binding.registerPassword.editableText.toString()
             //userType = fName.text.toString()
 
-            val checkUserTypeButtonId =rgUser.checkedRadioButtonId
+            val checkUserTypeButtonId =binding.rgUser.checkedRadioButtonId
             val userTypeRadioGroup = view.findViewById<RadioButton>(checkUserTypeButtonId)
             userType = userTypeRadioGroup.text.toString()
 
@@ -72,7 +80,7 @@ class SignupFragment: BaseFragment<FragmentSignupBinding, RegisterViewModel>() {
                 getRegister(userType)
             }
             else{
-                toast("${result.error}")
+                requireContext().toast("${result.error}")
             }
         }
     }
@@ -100,7 +108,7 @@ class SignupFragment: BaseFragment<FragmentSignupBinding, RegisterViewModel>() {
                     }
                     is Resource.Error ->{
                         hideKeyboard()
-                        response.message?.let { toast(it) }
+                        response.message?.let { requireContext().toast(it) }
                     }
 
                     is Resource.Loading ->{
@@ -130,12 +138,6 @@ class SignupFragment: BaseFragment<FragmentSignupBinding, RegisterViewModel>() {
     }
     */
 
-
-
-    override fun getViewBinding(
-        inflater: LayoutInflater,
-        container: ViewGroup?
-    )= FragmentSignupBinding.inflate(inflater, container, false)
 
     private fun setOnCheckedChangeListener() {
         rgUser.setOnCheckedChangeListener { group, checkedId ->

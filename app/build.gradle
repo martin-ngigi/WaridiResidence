@@ -135,4 +135,8 @@ dependencies {
     // Preference DataStore
     implementation "androidx.datastore:datastore-preferences:1.0.0"
 
+    //CircularImageView
+    implementation 'com.github.AtifSayings:CircularImageView:1.0.2'
+
+
 }

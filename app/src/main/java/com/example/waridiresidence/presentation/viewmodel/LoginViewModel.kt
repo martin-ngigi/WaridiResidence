@@ -72,18 +72,18 @@ class LoginViewModel @Inject constructor(
         catch (e: HttpException){
             when(e){
                 is IOException -> {
-                    _loginData.postValue(Event(Resource.Error(e.message!!)))
-                    toast(getApplication(), "Exception: ${e.message!!}")
-                    Log.e(TAG, "Exception: ${e.message!!}", )
+                    _loginData.postValue(Event(Resource.Error(e.message?.toString())))
+                    toast(getApplication(), "Exception: ${e.message?.toString()}")
+                    Log.e(TAG, "Exception: ${e.message?.toString()}", )
                 }
             }
         }
         catch (t: Throwable){
             when (t){
                 is IOException -> {
-                    _loginData.postValue(Event(Resource.Error(t.message!!)))
-                    toast(getApplication(), t.message!!)
-                    Log.e(TAG, "Error: ${t.message!!}", )
+                    _loginData.postValue(Event(Resource.Error(t.message?.toString())))
+                    toast(getApplication(), "Exception: ${t.message?.toString()}")
+                    Log.e(TAG, "Exception: ${t.message?.toString()}", )
                 }
             }
         }
