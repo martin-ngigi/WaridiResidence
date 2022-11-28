@@ -1,9 +1,13 @@
 package com.example.waridiresidence.util
 
+import android.app.Activity
+import android.content.Context
 import android.view.View
+import android.widget.Toast
 import com.example.waridiresidence.data.model.ValidationResult
 
 object Utils {
+
 
     fun validateLoginRequest(email: String, password: String): ValidationResult{
         if (email.isEmpty()) return  ValidationResult(false, "Email is Empty")
@@ -26,5 +30,14 @@ object Utils {
         //else
         return ValidationResult(true)
 
+    }
+
+    fun Context.toast(message: String) =
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+
+    fun toast2(context: Context, message: String){
+        Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
+        //eg
+        //toast2(requireContext(), "HI")
     }
 }

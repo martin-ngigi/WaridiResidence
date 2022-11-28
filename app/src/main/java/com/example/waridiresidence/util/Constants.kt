@@ -2,7 +2,7 @@ package com.example.waridiresidence.util
 
 class Constants {
     companion object{
-        const val BASE_URL = "https://d1bf-41-90-65-18.in.ngrok.io "
+        const val BASE_URL = "https://d2ad-41-90-65-18.in.ngrok.io"
 
         var fname = ""
         var lname = ""

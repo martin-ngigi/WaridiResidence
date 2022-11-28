@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Administrator/AndroidStudioProjects/WaridiResidence/app/src/main/res/drawable/ic_baseline_home_24.xml" value="0.1225" />
         <entry key="..\:/Users/Administrator/AndroidStudioProjects/WaridiResidence/app/src/main/res/drawable/ic_not_favorite.xml" value="0.1" />
         <entry key="..\:/Users/Administrator/AndroidStudioProjects/WaridiResidence/app/src/main/res/drawable/profile_header.xml" value="0.163" />
         <entry key="..\:/Users/Administrator/AndroidStudioProjects/WaridiResidence/app/src/main/res/layout/activity_auth.xml" value="0.14010416666666667" />
