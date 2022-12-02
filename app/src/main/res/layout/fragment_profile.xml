@@ -66,7 +66,7 @@
                 android:layout_height="wrap_content"
                 android:layout_above="@id/upLoadBtn"
                 android:visibility="gone"
-                android:textColor="@color/black"
+                android:textColor="@color/green"
                 android:layout_alignParentEnd="true"
                 android:layout_marginRight="10dp"
                 android:text="Click to Upload"
@@ -113,6 +113,7 @@
                 android:layout_marginRight="10dp"
                 android:layout_toRightOf="@+id/fnameTextView"
                 android:drawableEnd="@drawable/ic_baseline_edit_24"
+                android:editable="false"
                 android:padding="2dp"
                 android:text="Martin"
                 android:textColor="@color/black" />
@@ -152,10 +153,11 @@
                 android:id="@+id/tv_lname"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="10dp"
                 android:layout_centerVertical="true"
+                android:layout_marginRight="10dp"
                 android:layout_toRightOf="@+id/lnameTextView"
                 android:drawableEnd="@drawable/ic_baseline_edit_24"
+                android:editable="false"
                 android:padding="2dp"
                 android:text="Wainaina"
                 android:textColor="@color/black" />
@@ -199,6 +201,7 @@
                 android:layout_marginRight="10dp"
                 android:layout_toRightOf="@+id/phoneTextView"
                 android:drawableEnd="@drawable/ic_baseline_edit_24"
+                android:editable="false"
                 android:padding="2dp"
                 android:text="0712345678"
                 android:textColor="@color/black" />

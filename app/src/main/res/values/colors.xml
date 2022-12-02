@@ -16,4 +16,15 @@
     <color name="grey_light_one">#F3F3F3</color>
     <color name="grey_light_two">#F6F6F6</color>
 
+
+    <color name="black70">#B3000000</color>
+    <color name="black50">#80000000</color>
+    <color name="black30">#4D000000</color>
+    <color name="black10">#1A000000</color>
+
+    <color name="background_clr">#FAFBFF</color>
+
+    <color name="tab_selected">#FF000000</color>
+    <color name="tab_unselected">#4D000000</color>
+
 </resources>
