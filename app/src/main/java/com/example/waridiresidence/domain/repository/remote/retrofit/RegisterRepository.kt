@@ -1,4 +1,4 @@
-package com.example.waridiresidence.domain.repository
+package com.example.waridiresidence.domain.repository.remote.retrofit
 
 import com.example.waridiresidence.data.api.ApiService
 import com.example.waridiresidence.data.model.modelrequest.UserRequest

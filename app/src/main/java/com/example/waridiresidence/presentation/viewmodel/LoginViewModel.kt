@@ -6,7 +6,7 @@ import androidx.lifecycle.*
 import com.example.waridiresidence.WaridiResidence
 import com.example.waridiresidence.data.model.modelrequest.LoginRequest
 import com.example.waridiresidence.data.model.modelresponse.LoginResponse
-import com.example.waridiresidence.domain.repository.LoginRepository
+import com.example.waridiresidence.domain.repository.remote.retrofit.LoginRepository
 import com.example.waridiresidence.util.*
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi

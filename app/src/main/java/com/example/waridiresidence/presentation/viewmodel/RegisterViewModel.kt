@@ -9,7 +9,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.waridiresidence.WaridiResidence
 import com.example.waridiresidence.data.model.modelrequest.UserRequest
 import com.example.waridiresidence.data.model.modelresponse.UserResponse
-import com.example.waridiresidence.domain.repository.RegisterRepository
+import com.example.waridiresidence.domain.repository.remote.retrofit.RegisterRepository
 import com.example.waridiresidence.util.Event
 import com.example.waridiresidence.util.Resource
 import com.example.waridiresidence.util.hasInternetConnection

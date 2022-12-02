@@ -143,5 +143,8 @@ dependencies {
     //CircularImageView
     implementation 'com.github.AtifSayings:CircularImageView:1.0.2'
 
+    //ImagePicker
+    implementation 'com.github.dhaval2404:imagepicker:2.1'
+
 
 }

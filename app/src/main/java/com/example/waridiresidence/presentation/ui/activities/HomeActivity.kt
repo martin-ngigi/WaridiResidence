@@ -10,9 +10,11 @@ import com.example.waridiresidence.R
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.waridiresidence.databinding.ActivityHomeBinding
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.my_toolbar.*
 
+@AndroidEntryPoint
 class HomeActivity : AppCompatActivity() {
 
     //lateinit var navigationView: NavigationView

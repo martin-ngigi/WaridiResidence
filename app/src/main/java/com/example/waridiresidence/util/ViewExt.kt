@@ -23,6 +23,10 @@ fun toast(context: Context, message: String){
     Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
 }
 
+fun Fragment.toast(msg: String?){
+    Toast.makeText(requireContext(),msg,Toast.LENGTH_LONG).show()
+}
+
 fun Fragment.hideKeyboard() {
     view?.let { activity?.hideKeyboard(it) }
 }
