@@ -6,7 +6,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="horizontal"
     android:background="#EAEAEA"
-    tools:context=".presentation.ui.fragments.ProfileFragment">
+    tools:context=".presentation.ui.agent.fragments.ProfileAgentFragment">
 
     <RelativeLayout
         android:layout_width="match_parent"

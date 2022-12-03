@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_graph"
+    app:startDestination="@id/id_homeClientFragment">
+
+    <fragment
+        android:id="@+id/id_homeClientFragment"
+        android:name="com.example.waridiresidence.presentation.ui.client.fragments.HomeClientFragment"
+        android:label="Home Client"
+        tools:layout="@layout/fragment_home_client" />
+
+    <fragment
+        android:id="@+id/id_profileClientFragment"
+        android:name="com.example.waridiresidence.presentation.ui.client.fragments.ProfileClientFragment"
+        android:label="Profile Client"
+        tools:layout="@layout/fragment_profile_client" />
+    <fragment
+        android:id="@+id/id_settingsClientFragment"
+        android:name="com.example.waridiresidence.presentation.ui.client.fragments.SettingsClientFragment"
+        android:label="Settings Client"
+        tools:layout="@layout/fragment_settings_client" />
+
+</navigation>

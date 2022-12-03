@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_graph"
+    app:startDestination="@id/id_homeAgentFragment">
+    <fragment
+        android:id="@+id/id_homeAgentFragment"
+        android:name="com.example.waridiresidence.presentation.ui.agent.fragments.HomeAgentFragment"
+        android:label="Home Agent"
+        tools:layout="@layout/fragment_home_agent" />
+    <fragment
+        android:id="@+id/id_profileAgentFragment"
+        android:name="com.example.waridiresidence.presentation.ui.agent.fragments.ProfileAgentFragment"
+        android:label="Profile Agent"
+        tools:layout="@layout/fragment_profile_agent" />
+    <fragment
+        android:id="@+id/id_settingsAgentFragment"
+        android:name="com.example.waridiresidence.presentation.ui.agent.fragments.SettingsAgentFragment"
+        android:label="Settings Agent"
+        tools:layout="@layout/fragment_settings_agent" />
+</navigation>

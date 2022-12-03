@@ -4,9 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.provider.Settings
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -14,14 +12,14 @@ import androidx.navigation.fragment.findNavController
 import com.example.waridiresidence.R
 import com.example.waridiresidence.data.model.modelrequest.LoginRequest
 import com.example.waridiresidence.databinding.FragmentLoginBinding
-import com.example.waridiresidence.presentation.ui.activities.HomeActivity
+import com.example.waridiresidence.presentation.ui.agent.activities.HomeAgentActivity
+import com.example.waridiresidence.presentation.ui.client.activities.HomeClientActivity
 import com.example.waridiresidence.util.Resource
 import com.example.waridiresidence.util.hideKeyboard
 import com.example.waridiresidence.presentation.viewmodel.LoginViewModel
+import com.example.waridiresidence.util.Constants
 import com.example.waridiresidence.util.Utils.toast
-import com.example.waridiresidence.util.Utils.toast2
 import com.example.waridiresidence.util.Utils.validateLoginRequest
-import com.example.waridiresidence.util.toast
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_login.*
 
@@ -102,9 +100,20 @@ class LoginFragment: Fragment(R.layout.fragment_login) {
                             //findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
 
                             //navigate to HomeActivity
-                            Intent(requireContext(), HomeActivity::class.java).also {
-                                requireContext().startActivity(it)
+                            if (Constants.userType.equals("A")){
+                                Intent(requireContext(), HomeAgentActivity::class.java).also {
+                                    requireContext().startActivity(it)
+                                }
                             }
+                            else if (Constants.userType.equals("C")){
+                                Intent(requireContext(), HomeClientActivity::class.java).also {
+                                    requireContext().startActivity(it)
+                                }
+                            }
+                            else{
+                                return@let null
+                            }
+
                         }
                     }
 

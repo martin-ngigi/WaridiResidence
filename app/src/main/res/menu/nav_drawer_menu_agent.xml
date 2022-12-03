@@ -2,7 +2,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/id_homeFragment"
+        android:id="@+id/id_homeAgentFragment"
         android:title="Home"
         android:icon="@drawable/ic_baseline_home_24"
         android:checked="true"
@@ -10,7 +10,7 @@
         />
 
     <item
-        android:id="@+id/id_profileFragment"
+        android:id="@+id/id_profileAgentFragment"
         android:title="Profile"
         android:icon="@drawable/ic_baseline_account_box_24"
         android:checkable="true"
@@ -18,7 +18,7 @@
 
 
     <item
-        android:id="@+id/id_settingsFragment"
+        android:id="@+id/id_settingsAgentFragment"
         android:title="Settings"
         android:icon="@drawable/ic_baseline_settings_24"
         android:checkable="true"

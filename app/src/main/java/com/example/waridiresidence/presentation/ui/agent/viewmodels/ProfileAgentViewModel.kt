@@ -1,4 +1,4 @@
-package com.example.waridiresidence.presentation.viewmodel
+package com.example.waridiresidence.presentation.ui.agent.viewmodels
 
 import android.app.Application
 import android.net.Uri
@@ -20,7 +20,7 @@ import retrofit2.HttpException
 import java.io.IOException
 
 @HiltViewModel
-class ProfileViewModel @Inject constructor(
+class ProfileAgentViewModel @Inject constructor(
     application: Application,
     private val repositoryRetrofit: RetrofitRepository,
     private val repositoryFirebase: WaridiRepositoryF,

@@ -1,4 +1,4 @@
-package com.example.waridiresidence.presentation.ui.fragments
+package com.example.waridiresidence.presentation.ui.agent.fragments
 
 import android.app.Activity
 import android.net.Uri
@@ -16,8 +16,8 @@ import androidx.lifecycle.Observer
 import com.bumptech.glide.Glide
 import com.example.waridiresidence.R
 import com.example.waridiresidence.data.model.modelrequest.UserProfileRequest
-import com.example.waridiresidence.databinding.FragmentProfileBinding
-import com.example.waridiresidence.presentation.viewmodel.ProfileViewModel
+import com.example.waridiresidence.databinding.FragmentProfileAgentBinding
+import com.example.waridiresidence.presentation.ui.agent.viewmodels.ProfileAgentViewModel
 import com.example.waridiresidence.util.*
 import com.example.waridiresidence.util.Utils.validateProfileRequest
 import com.github.dhaval2404.imagepicker.ImagePicker
@@ -25,11 +25,11 @@ import com.google.android.material.button.MaterialButton
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class ProfileFragment : Fragment(R.layout.fragment_profile) {
-    private lateinit var binding: FragmentProfileBinding
+class ProfileAgentFragment : Fragment(R.layout.fragment_profile_agent) {
+    private lateinit var binding: FragmentProfileAgentBinding
 
     private val TAG : String = "ProfileFragment"
-    private val viewModel: ProfileViewModel by viewModels()
+    private val viewModel: ProfileAgentViewModel by viewModels()
     private lateinit var imageUri: Uri
     private lateinit var firstName: String
     private lateinit var lastName: String
@@ -252,7 +252,7 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
             return binding.root
         }
         else{
-            binding = FragmentProfileBinding.inflate(layoutInflater)
+            binding = FragmentProfileAgentBinding.inflate(layoutInflater)
             return binding.root
         }
     }

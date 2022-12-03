@@ -25,7 +25,10 @@
         </activity>
 
         <activity
-            android:name=".presentation.ui.activities.HomeActivity"
+            android:name=".presentation.ui.client.activities.HomeClientActivity"
+            android:exported="false" />
+        <activity
+            android:name=".presentation.ui.agent.activities.HomeAgentActivity"
             android:exported="false" />
         <activity
             android:name=".presentation.ui.activities.AuthActivity"

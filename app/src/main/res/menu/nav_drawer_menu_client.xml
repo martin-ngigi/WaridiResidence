@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/id_homeClientFragment"
+        android:title="Home"
+        android:icon="@drawable/ic_baseline_home_24"
+        android:checked="true"
+        android:checkable="true"
+        />
+
+    <item
+        android:id="@+id/id_profileClientFragment"
+        android:title="Profile"
+        android:icon="@drawable/ic_baseline_account_box_24"
+        android:checkable="true"
+        />
+
+
+    <item
+        android:id="@+id/id_settingsClientFragment"
+        android:title="Settings"
+        android:icon="@drawable/ic_baseline_settings_24"
+        android:checkable="true"
+        />
+
+</menu>

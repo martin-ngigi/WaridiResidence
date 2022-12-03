@@ -99,6 +99,7 @@ class LoginViewModel @Inject constructor(
         Constants.access = body.access
         Constants.refresh = body.refresh
         Constants.profile_image = body.user.profileImage
+        Constants.userType = body.user.userType
 
     }
 }
