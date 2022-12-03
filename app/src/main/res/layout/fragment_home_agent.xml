@@ -4,10 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.ui.agent.fragments.HomeAgentFragment"
-    android:background="@color/white"
+    android:background="@color/white10"
     android:padding="15dp"
-    >
+    tools:context=".presentation.ui.agent.fragments.HomeAgentFragment">
 
     <ImageView
         android:id="@+id/imageView4"
@@ -63,6 +62,7 @@
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
         android:textColorHint="@color/black"
         app:boxBackgroundColor="@color/white"
         app:boxBackgroundMode="outline"
@@ -70,7 +70,6 @@
         app:boxCornerRadiusBottomStart="10dp"
         app:boxCornerRadiusTopEnd="10dp"
         app:boxCornerRadiusTopStart="10dp"
-        android:layout_marginTop="5dp"
         app:boxStrokeColor="@color/green"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -87,80 +86,139 @@
             android:textColorHint="@color/black" />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <RelativeLayout
-        android:id="@+id/home_RL"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        app:layout_constraintEnd_toEndOf="parent"
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/addHomeCV"
+        android:layout_width="0dp"
+        android:layout_height="100dp"
+        android:layout_margin="10dp"
+        android:elevation="10dp"
+        android:padding="10dp"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="10dp"
+        app:layout_constraintEnd_toStartOf="@+id/allHomeCV"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/searTIL">
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/simpleTextCV"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:layout_margin="10dp"
-            android:elevation="10dp"
-            android:padding="10dp"
-            app:cardBackgroundColor="@color/green"
-            app:cardCornerRadius="10dp">
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="10dp">
-
-                <TextView
-                    android:id="@+id/tv_summerSurprise"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="A Summer surprise"
-                    android:textColor="@color/white"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/tv_cashBack"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/tv_summerSurprise"
-                    android:layout_marginTop="5dp"
-                    android:text="Cashback 20%"
-                    android:textColor="@color/white"
-                    android:textSize="30sp"
-                    android:textStyle="bold" />
-            </RelativeLayout>
-
-
-        </androidx.cardview.widget.CardView>
-
-        <TextView
-            android:id="@+id/tv_special"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/simpleTextCV"
-            android:layout_marginTop="5dp"
-            android:text="Special for you"
-            android:textColor="@color/black"
-            android:textSize="25sp"
-            android:textStyle="bold" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:layout_width="match_parent"
-            android:layout_height="220dp"
-            android:layout_below="@+id/tv_special"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            tools:listitem="@layout/row_special" />
-
-    </RelativeLayout>
-
-
-        <include
-            android:id="@+id/login_progress"
-            layout="@layout/progress_bar"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:visibility="gone" />
+            android:padding="2dp"
+            >
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/home1LA"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                app:lottie_rawRes="@raw/home_blue"
+                app:lottie_autoPlay="true"
+                app:lottie_loop="true"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+            <TextView
+                style="@style/Base.CardView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Add Home"
+                android:layout_marginTop="2dp"
+                android:textColor="@color/green"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/home1LA" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/allHomeCV"
+        android:layout_width="0dp"
+        android:layout_height="100dp"
+        android:layout_marginEnd="10dp"
+        android:elevation="10dp"
+        android:padding="10dp"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/addHomeCV"
+        app:layout_constraintTop_toTopOf="@+id/addHomeCV">
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="2dp"
+            >
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/home2LA"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                app:lottie_rawRes="@raw/home3"
+                app:lottie_autoPlay="true"
+                app:lottie_loop="true"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+            <TextView
+                style="@style/Base.CardView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="View Homes"
+                android:layout_marginTop="2dp"
+                android:textColor="@color/green"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/home2LA" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/latestHomeCV"
+        android:layout_width="0dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:elevation="10dp"
+        android:padding="10dp"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="10dp"
+        app:layout_constraintEnd_toStartOf="@+id/latest2HomeCV"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/addHomeCV">
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/latest2HomeCV"
+        android:layout_width="0dp"
+        android:layout_height="100dp"
+        android:elevation="10dp"
+        android:padding="10dp"
+        android:layout_marginEnd="10dp"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/latestHomeCV"
+        app:layout_constraintTop_toTopOf="@+id/latestHomeCV">
+
+    </androidx.cardview.widget.CardView>
+
+    <include
+        android:id="@+id/login_progress"
+        layout="@layout/progress_bar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
