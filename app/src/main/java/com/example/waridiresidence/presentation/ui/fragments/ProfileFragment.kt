@@ -12,11 +12,14 @@ import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import com.bumptech.glide.Glide
 import com.example.waridiresidence.R
+import com.example.waridiresidence.data.model.modelrequest.UserProfileRequest
 import com.example.waridiresidence.databinding.FragmentProfileBinding
 import com.example.waridiresidence.presentation.viewmodel.ProfileViewModel
 import com.example.waridiresidence.util.*
+import com.example.waridiresidence.util.Utils.validateProfileRequest
 import com.github.dhaval2404.imagepicker.ImagePicker
 import com.google.android.material.button.MaterialButton
 import dagger.hilt.android.AndroidEntryPoint
@@ -28,7 +31,11 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
     private val TAG : String = "ProfileFragment"
     private val viewModel: ProfileViewModel by viewModels()
     private lateinit var imageUri: Uri
+    private lateinit var firstName: String
+    private lateinit var lastName: String
+    private lateinit var phone: String
 
+    //open gallery
     private val startForProfileImageResult = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){ result: ActivityResult ->
         val resultCode = result.resultCode
         val data = result.data
@@ -68,7 +75,13 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
     }
 
     private fun updateUI() {
+
+
         binding.loginProgress.loadingProgress.hide()
+
+        //get data from constants and set it in The ui
+        setUIData()
+
         /**
          * Handle imageView click listener
          */
@@ -85,6 +98,7 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
         binding.upLoadBtn.setOnClickListener {
             binding.loginProgress.loadingProgress.show()
             uploadImageToStorage()
+            getUserProfileData()
         }
 
         binding.tvFname.setOnClickListener {
@@ -104,6 +118,77 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
 
 
 
+    }
+
+    private fun setUIData() {
+        //load image to Imageview
+        if (Constants.profile_image.isNotEmpty()){
+            Glide
+                .with(this)
+                .load(Constants.profile_image)
+                .into(binding.imageView)
+        }
+        //set textviews
+        binding.tvFname.text = Constants.fname
+        binding.tvLname.text = Constants.lname
+        binding.tvPhone.text = Constants.phone
+
+    }
+
+    private fun getUserProfileData() {
+        firstName = binding.tvFname.text.toString()
+        lastName = binding.tvLname.text.toString()
+        phone = binding.tvPhone.text.toString()
+        val result = validateProfileRequest(firstname = firstName, lastname = lastName, phone = phone)
+        if (result.successful){
+            updateToDB()
+        }
+        else{
+            toast(result.error)
+        }
+    }
+
+    //val max = if (a > b) a else b
+    private fun updateToDB() {
+        val userRequest = UserProfileRequest(
+            firstName=firstName,
+            lastName = lastName,
+            phone = phone,
+            profileImage =  if (imageUri.toString().isNotEmpty()) imageUri.toString() else ""
+        )
+
+        //profileImage is statement
+        /**
+        if (imageUri.toString().isNotEmpty()){
+            profileImage = imageUri.toString()
+        }
+        else{
+            profileImage = ""
+        }
+        */
+
+        viewModel.updateUser(userRequest)
+        viewModel.updateUserData.observe(viewLifecycleOwner, Observer { event->
+            event.getContentIfNotHandled()?.let { response ->
+                when(response){
+                    is Resource.Success -> {
+                        hideProgressBar()
+                        response.message?.let {
+                            toast(it)
+                        }
+                    }
+                    is Resource.Error -> {
+                        hideProgressBar()
+                        response.message?.let {
+                            toast(it)
+                        }
+                    }
+                    is Resource.Loading -> {
+                        showProgressBar()
+                    }
+                }
+            }
+        })
     }
 
     private fun showDialog(textView: TextView, textName: String) {
@@ -132,21 +217,18 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
     }
 
     private fun uploadImageToStorage() {
-
-
         if (imageUri.toString().isNotEmpty()){
             viewModel.onUploadSingleFile(imageUri){state ->
                 when(state){
                     is UiState.Loading -> {
-                        binding.loginProgress.loadingProgress.show()
+                        showProgressBar()
                     }
                     is UiState.Failure -> {
-                        binding.loginProgress.loadingProgress.hide()
+                        hideProgressBar()
                         toast(state.error)
                     }
                     is UiState.Success ->{
-                        updateImageUrlDB()
-                        binding.loginProgress.loadingProgress.hide()
+                        //hideProgressBar()
                         binding.uploadTV.hide()
                         binding.upLoadBtn.visibility = View.GONE
 
@@ -155,10 +237,9 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
                 }
             }
         }
-    }
-
-    private fun updateImageUrlDB() {
-
+        else{
+            toast("You have not selected any image... Or an error occurred while selecting the image")
+        }
     }
 
 
@@ -174,5 +255,14 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
             binding = FragmentProfileBinding.inflate(layoutInflater)
             return binding.root
         }
+    }
+
+
+    private fun showProgressBar() {
+        binding.loginProgress.loadingProgress.show()
+    }
+
+    private fun hideProgressBar() {
+        binding.loginProgress.loadingProgress.hide()
     }
 }

@@ -32,6 +32,21 @@ object Utils {
 
     }
 
+    fun validateProfileRequest(firstname: String,
+                                lastname: String,
+                                phone: String,
+                               //imageUri: String,
+    ): ValidationResult{
+        if (firstname.isEmpty()) return  ValidationResult(false, "First Name is Empty")
+        if (lastname.isEmpty()) return  ValidationResult(false, "Last Name is Empty")
+        if (phone.isEmpty()) return  ValidationResult(false, "Phone is Empty")
+            // if (imageUri.isEmpty()) return  ValidationResult(false, "Image is Empty")
+
+        //else
+        return ValidationResult(true)
+
+    }
+
     fun Context.toast(message: String) =
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
 

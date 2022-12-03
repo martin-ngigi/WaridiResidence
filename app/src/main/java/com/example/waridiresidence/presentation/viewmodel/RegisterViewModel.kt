@@ -8,8 +8,9 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.waridiresidence.WaridiResidence
 import com.example.waridiresidence.data.model.modelrequest.UserRequest
+import com.example.waridiresidence.data.model.modelresponse.UserProfileResponse
 import com.example.waridiresidence.data.model.modelresponse.UserResponse
-import com.example.waridiresidence.domain.repository.remote.retrofit.RegisterRepository
+import com.example.waridiresidence.domain.repository.remote.retrofit.RetrofitRepository
 import com.example.waridiresidence.util.Event
 import com.example.waridiresidence.util.Resource
 import com.example.waridiresidence.util.hasInternetConnection
@@ -25,7 +26,7 @@ import javax.inject.Inject
 @HiltViewModel
 class RegisterViewModel @Inject constructor(
     application: Application,
-    private val repository: RegisterRepository
+    private val repository: RetrofitRepository
 //) : ViewModel(){  //ViewModel is also acceptable
 ): AndroidViewModel(application){
 
@@ -40,11 +41,12 @@ class RegisterViewModel @Inject constructor(
     private suspend fun getRegister(userRequest: UserRequest) {
         _registerData.postValue(Event(Resource.Loading()))
         try {
+
             if (hasInternetConnection<WaridiResidence>()){
                 val response = repository.getRegister(userRequest)
                 if (response.isSuccessful){
                     Log.i(TAG, "First stage of register is successful.: ")
-                    if (!(response.body()!!.user.id.toString().isNullOrEmpty())){//if id is not null/empty means user was registered successfully
+                    if (response.body()!!.user.id.toString().isNotEmpty()){//if id is not null/empty means user was registered successfully
                         Log.i(TAG, "register is successful... ")
                         val successResponse: UserResponse? = response.body()
                         toast(getApplication(), successResponse!!.message)

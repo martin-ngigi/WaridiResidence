@@ -1,14 +1,18 @@
 package com.example.waridiresidence.data.api
 
 import com.example.waridiresidence.data.model.modelrequest.LoginRequest
+import com.example.waridiresidence.data.model.modelrequest.UserProfileRequest
 import com.example.waridiresidence.data.model.modelrequest.UserRequest
 import com.example.waridiresidence.data.model.modelresponse.LoginResponse
+import com.example.waridiresidence.data.model.modelresponse.UserProfileResponse
 import com.example.waridiresidence.data.model.modelresponse.UserResponse
 import retrofit2.Response
-import retrofit2.http.Body
-import retrofit2.http.POST
+import retrofit2.http.*
+
 
 interface ApiService {
+
+
     /**
      *  API GITHUB LINK : https://github.com/martin-ngigi/Waridi-Homes-JWT-API
      */
@@ -19,4 +23,11 @@ interface ApiService {
     //register
     @POST("/auth/signup/")
     suspend fun registerUser(@Body userRequest: UserRequest): Response<UserResponse>
+
+    //update user profile
+    @Headers("Content-Type: application/json")
+    @PUT("/auth/update/{pk}/")
+//    suspend fun  updateUser(@Body userProfileRequest: UserProfileRequest,@Path(value = "pk")id:Int): Response<UserProfileResponse>
+    //suspend fun  updateUser(@Body userProfileRequest: UserProfileRequest,@Path("pk") id:Int, @Header("Authorization") value:String ): Response<UserProfileResponse>
+    suspend fun  updateUser(@Body userProfileRequest: UserProfileRequest,@Path("pk") id:Int): Response<UserProfileResponse>
 }

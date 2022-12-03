@@ -6,7 +6,7 @@ import androidx.lifecycle.*
 import com.example.waridiresidence.WaridiResidence
 import com.example.waridiresidence.data.model.modelrequest.LoginRequest
 import com.example.waridiresidence.data.model.modelresponse.LoginResponse
-import com.example.waridiresidence.domain.repository.remote.retrofit.LoginRepository
+import com.example.waridiresidence.domain.repository.remote.retrofit.RetrofitRepository
 import com.example.waridiresidence.util.*
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -19,7 +19,7 @@ import javax.inject.Inject
 @HiltViewModel
 class LoginViewModel @Inject constructor(
     application: Application,
-    private val repository: LoginRepository
+    private val repository: RetrofitRepository
 //) : ViewModel(){  //ViewModel is also acceptable
 ) : AndroidViewModel(application){
     val TAG = "LoginPage"
@@ -40,7 +40,7 @@ class LoginViewModel @Inject constructor(
                 val response = repository.getLogin(loginRequest)
                 if (response.isSuccessful){
                     Log.i(TAG, "First stage of login is successful.: ")
-                    if ( !(response.body()!!.access.isNullOrEmpty())){ //not empty or not null
+                    if ( response.body()!!.access.isNotEmpty()){ //not empty or not null
                         Log.i(TAG, "login is successful... ")
                         val successResponse: LoginResponse? = response.body()
                         toast(getApplication(), successResponse!!.message)
@@ -90,13 +90,15 @@ class LoginViewModel @Inject constructor(
     }
 
     private fun saveUserDataInConstants(body: LoginResponse) {
+        Constants.id = body.user.id
         Constants.fname = body.user.firstName
-        Constants.lname = body.user.lastLogin
+        Constants.lname = body.user.lastName
         Constants.email = body.user.email
         Constants.phone = body.user.phone
         Constants.userType = body.user.userType
         Constants.access = body.access
         Constants.refresh = body.refresh
+        Constants.profile_image = body.user.profileImage
 
     }
 }

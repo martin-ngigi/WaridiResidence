@@ -38,4 +38,6 @@ data class User(
     val userType: String,
     @SerializedName("username")
     val username: String
+//    @SerializedName("profile_image")
+//    val profileImage: String
 ): Serializable

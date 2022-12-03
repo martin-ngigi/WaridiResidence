@@ -1,6 +1,7 @@
 package com.example.waridiresidence.domain.repository.remote.firebase
 
 import android.net.Uri
+import com.example.waridiresidence.util.Constants
 import com.example.waridiresidence.util.Constants.FirebaseStorageConstants.PROFILE_IMAGES
 import com.example.waridiresidence.util.UiState
 import com.google.firebase.FirebaseException
@@ -24,7 +25,9 @@ class WaridiRepositoryImplF(
                     .await()
                     .storage
                     .downloadUrl
+                    //.addOnSuccessListener { Constants.profile_image = it.toString() } //save image uri to constants
                     .await()
+
             }
             onResult.invoke(UiState.Success(uri))
         }

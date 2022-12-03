@@ -34,5 +34,7 @@ data class UserLogin(
     @SerializedName("user_permissions")
     val userPermissions: List<Any>,
     @SerializedName("user_type")
-    val userType: String
+    val userType: String,
+    @SerializedName("profile_image")
+    val profileImage: String
 ): Serializable
