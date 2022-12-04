@@ -47,26 +47,9 @@ class AppModule {
         return GsonConverterFactory.create()
     }
 
-//    //doesn't have access token/authorizatio/bearer since access token are only provided at login
-//    @Provides
-//    fun providesRetrofitAtRegisterLevel(
-//        baseUrl: String,
-//        converterFactory: Converter.Factory,
-//        client: OkHttpClient
-//    ): Retrofit{
-//        return Retrofit.Builder()
-//            .baseUrl(baseUrl)
-//            .addConverterFactory(converterFactory)
-//            .client(client)
-//            .build()
-//    }
-
-
-    //url - > https://stackoverflow.com/questions/41078866/retrofit2-authorization-global-interceptor-for-access-token
-
-    //for login and the rest of the levels after loggin since access tokens are needed....
+    //doesn't have access token/authorizatio/bearer since access token are only provided at login
     @Provides
-    fun providesRetrofit(
+    fun providesRetrofitAtRegisterLevel(
         baseUrl: String,
         converterFactory: Converter.Factory,
         client: OkHttpClient
@@ -74,13 +57,30 @@ class AppModule {
         return Retrofit.Builder()
             .baseUrl(baseUrl)
             .addConverterFactory(converterFactory)
-            //.client(client)
-            .client(OkHttpClient.Builder().addInterceptor { chain ->
-                val request = chain.request().newBuilder().addHeader("Authorization", "Bearer ${Constants.access}").build()
-                chain.proceed(request)
-            }.build())
+            .client(client)
             .build()
     }
+
+
+    //url - > https://stackoverflow.com/questions/41078866/retrofit2-authorization-global-interceptor-for-access-token
+
+//    //for login and the rest of the levels after loggin since access tokens are needed....
+//    @Provides
+//    fun providesRetrofit(
+//        baseUrl: String,
+//        converterFactory: Converter.Factory,
+//        client: OkHttpClient
+//    ): Retrofit{
+//        return Retrofit.Builder()
+//            .baseUrl(baseUrl)
+//            .addConverterFactory(converterFactory)
+//            //.client(client)
+//            .client(OkHttpClient.Builder().addInterceptor { chain ->
+//                val request = chain.request().newBuilder().addHeader("Authorization", "Bearer ${Constants.access}").build()
+//                chain.proceed(request)
+//            }.build())
+//            .build()
+//    }
 
     @Provides
     fun providesRetrofitService(retrofit: Retrofit): ApiService{

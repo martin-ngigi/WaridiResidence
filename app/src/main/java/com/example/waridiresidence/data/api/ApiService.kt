@@ -6,6 +6,7 @@ import com.example.waridiresidence.data.model.modelrequest.UserRequest
 import com.example.waridiresidence.data.model.modelresponse.LoginResponse
 import com.example.waridiresidence.data.model.modelresponse.UserProfileResponse
 import com.example.waridiresidence.data.model.modelresponse.UserResponse
+import com.example.waridiresidence.util.Constants
 import retrofit2.Response
 import retrofit2.http.*
 
@@ -29,5 +30,5 @@ interface ApiService {
     @PUT("/auth/update/{pk}/")
 //    suspend fun  updateUser(@Body userProfileRequest: UserProfileRequest,@Path(value = "pk")id:Int): Response<UserProfileResponse>
     //suspend fun  updateUser(@Body userProfileRequest: UserProfileRequest,@Path("pk") id:Int, @Header("Authorization") value:String ): Response<UserProfileResponse>
-    suspend fun  updateUser(@Body userProfileRequest: UserProfileRequest,@Path("pk") id:Int): Response<UserProfileResponse>
+    suspend fun  updateUser(@Body userProfileRequest: UserProfileRequest,@Path("pk") id:Int, @Header("Authorization")access: String): Response<UserProfileResponse>
 }

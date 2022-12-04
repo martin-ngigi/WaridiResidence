@@ -24,6 +24,6 @@ class RetrofitRepository @Inject constructor(
     }
 
     suspend fun getUpdateUser(userRequest: UserProfileRequest): Response<UserProfileResponse>{
-        return  apiService.updateUser(userRequest, Constants.id)
+        return  apiService.updateUser(userRequest, Constants.id, "Bearer ${Constants.access}")
     }
 }
