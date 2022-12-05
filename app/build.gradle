@@ -146,5 +146,8 @@ dependencies {
     //ImagePicker
     implementation 'com.github.dhaval2404:imagepicker:2.1'
 
+    //StepProgress
+    implementation 'com.github.funriser:StepProgress:0.1.0'
+
 
 }
