@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="20dp"
+    android:padding="10dp"
     android:background="@color/white"
     tools:context=".presentation.ui.agent.fragments.AddHouseAgentFragment">
 
@@ -26,6 +26,7 @@
         app:textTitlePadding="5dp"
         app:titlesEnabled="true" />
 
+    <!--Add Home Description-->
     <RelativeLayout
         android:id="@+id/addHomeDesRL"
         android:layout_width="match_parent"
@@ -163,11 +164,12 @@
 
     </RelativeLayout>
 
+    <!--Add Home Images -->
     <RelativeLayout
         android:id="@+id/addHomeImagesRL"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:visibility="visible"
+        android:visibility="gone"
         android:layout_below="@+id/addHomeDesRL"
         android:padding="10dp">
 
@@ -294,6 +296,70 @@
             android:layout_marginBottom="5dp"
             android:text="Add Another Image"
             android:textAllCaps="false" />
+
+    </RelativeLayout>
+
+    <!--Congratulations-->
+    <RelativeLayout
+        android:id="@+id/congratsRL"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/addHouseBtn"
+        android:visibility="visible"
+        android:layout_below="@+id/addHomeDesRL"
+        >
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/congratsCardView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@color/white"
+            app:cardCornerRadius="25dp"
+            app:cardElevation="10dp">
+
+
+            <RelativeLayout
+                android:id="@+id/congratsInnerRL"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <com.airbnb.lottie.LottieAnimationView
+                    android:id="@+id/lottieAnimCongratulations"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#0DAEABAB"
+                    app:lottie_autoPlay="true"
+                    app:lottie_loop="true"
+                    app:lottie_url="https://assets1.lottiefiles.com/packages/lf20_l4xxtfd3.json" />
+
+
+                <TextView
+                    android:id="@+id/congratsTv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:fontFamily="@font/anterobot1"
+                    android:text="Congratulations"
+                    android:textColor="@color/green"
+                    android:textSize="30sp"
+                    android:textStyle="bold|italic" />
+
+                <TextView
+                    android:id="@+id/madeItTv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/congratsTv"
+                    android:layout_centerInParent="true"
+                    android:fontFamily="@font/anterobot2"
+                    android:text="You have uploaded house successfully"
+                    android:textColor="@color/green"
+                    android:textSize="20sp" />
+
+            </RelativeLayout>
+
+        </androidx.cardview.widget.CardView>
 
     </RelativeLayout>
 
