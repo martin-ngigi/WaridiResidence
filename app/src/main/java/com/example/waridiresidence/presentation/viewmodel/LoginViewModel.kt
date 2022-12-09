@@ -5,7 +5,9 @@ import android.util.Log
 import androidx.lifecycle.*
 import com.example.waridiresidence.WaridiResidence
 import com.example.waridiresidence.data.model.modelrequest.LoginRequest
+import com.example.waridiresidence.data.model.modelrequest.house.UserHouseRequest
 import com.example.waridiresidence.data.model.modelresponse.LoginResponse
+import com.example.waridiresidence.data.model.modelresponse.house.UserHouseResponse
 import com.example.waridiresidence.domain.repository.remote.retrofit.RetrofitRepository
 import com.example.waridiresidence.util.*
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -25,11 +27,18 @@ class LoginViewModel @Inject constructor(
     val TAG = "LoginPage"
 
     private val _loginData = MutableLiveData<Event<Resource<LoginResponse>>>()
-
     val  loginData: LiveData<Event<Resource<LoginResponse>>> = _loginData
+
+    private val _registerUserHouseData = MutableLiveData<Event<Resource<UserHouseResponse>>>()
+    val registerUserHouseData: LiveData<Event<Resource<UserHouseResponse>>> = _registerUserHouseData
+
 
     fun loginUser(loginRequest: LoginRequest) = viewModelScope.launch {
         getLogin(loginRequest)
+    }
+
+    fun registerUserHouse(userHouseRequest: UserHouseRequest) =viewModelScope.launch {
+        getRegisterUserHouse(userHouseRequest)
     }
 
     private suspend fun getLogin(loginRequest: LoginRequest) {
@@ -100,6 +109,52 @@ class LoginViewModel @Inject constructor(
         Constants.refresh = body.refresh
         Constants.profile_image = body.user.profileImage
         Constants.userType = body.user.userType
+        Constants.hasHouses = body.user.hasHouses
+
 
     }
+
+    private suspend fun getRegisterUserHouse(userHouseRequest: UserHouseRequest) {
+        _registerUserHouseData.postValue(Event(Resource.Loading()))
+        try {
+            if (hasInternetConnection<WaridiResidence>()){
+                val response = repository.getRegisterUserHouse(userHouseRequest)
+                Log.i(TAG, "First stage of getRegisterUserHouse Success: ")
+                if (response.isSuccessful){
+                    if (response.body()!!.id.toString().isNotEmpty()){ //if id is not empty means that the user-house has been created successfuly
+                        Log.i(TAG, "getRegisterUserHouse is Successful: ")
+                        val successResponse : UserHouseResponse? = response.body()
+                        toast(getApplication(), "House description added successfully")
+                        _registerUserHouseData.postValue(Event(Resource.Success(response.body()!!)))
+                    }
+                }
+                else if (response.body()!!.id.toString().isEmpty()){
+                    val errorResponse: UserHouseResponse?= response.body()
+                    toast(getApplication(), "Error occurred while posting data.\nHint ${errorResponse}")
+                    Log.e(TAG, "getRegisterUserHouse Error: \nError occurred while posting data.\nHint ${errorResponse}" )
+                }
+            }
+            else{
+                _registerUserHouseData.postValue(Event(Resource.Error("No Internet Connection.\nPlease turn on cellular data or WiFi")))
+                toast(getApplication(), "No Internet Connection.\nPlease turn on cellular data or WiFi")
+                Log.e(TAG, "No Internet Connection.\nPlease turn on cellular data or WiFi", )
+
+            }
+        }
+        catch (e: HttpException){
+            when(e){
+                is IOException -> {
+                    _registerUserHouseData.postValue(Event(Resource.Error(e.message!!)))
+                    toast(getApplication(), "Exception: ${e.message!!}")
+                    Log.e(TAG, "Exception: ${e.message!!}", )
+                }
+            }
+        }
+        catch (t: Throwable){
+            _registerUserHouseData.postValue(Event(Resource.Error(t.message!!)))
+            toast(getApplication(), "Exception: ${t.message!!}")
+            Log.e(TAG, "Exception: ${t.message!!}", )
+        }
+    }
+
 }

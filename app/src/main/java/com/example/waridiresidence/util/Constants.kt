@@ -2,7 +2,7 @@ package com.example.waridiresidence.util
 
 class Constants {
     companion object{
-        const val BASE_URL = "https://8f12-105-163-2-120.in.ngrok.io "
+        const val BASE_URL = "https://bd59-154-76-132-189.in.ngrok.io"
         var id: Int=0 //set it to zero.. then it will be updated later
         var fname = ""
         var lname = ""
@@ -12,6 +12,7 @@ class Constants {
         var access = ""
         var refresh = ""
         var profile_image = ""
+        var hasHouses = false
     }
 
     object FirebaseStorageConstants{

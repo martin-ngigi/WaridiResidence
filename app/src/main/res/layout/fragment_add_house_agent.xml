@@ -31,7 +31,7 @@
         android:id="@+id/addHomeDesRL"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:visibility="gone"
+        android:visibility="visible"
         android:layout_below="@+id/vStepProgress"
         android:padding="10dp">
 
@@ -43,7 +43,7 @@
             android:layout_marginTop="5dp"
             android:layout_marginEnd="5dp"
             android:layout_marginBottom="5dp"
-            android:text="Category:"
+            android:text="Select Category:"
             android:textColor="@color/black" />
 
         <Spinner
@@ -305,7 +305,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/addHouseBtn"
-        android:visibility="visible"
+        android:visibility="gone"
         android:layout_below="@+id/addHomeDesRL"
         >
 

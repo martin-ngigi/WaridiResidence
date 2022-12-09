@@ -25,6 +25,8 @@ data class UserResponse(
             "phone": "0797292290",
             "gender": "F",
             "user_type": "C",
+            "profile_image": null,
+            "has_houses": false,
             "groups": [],
             "user_permissions": []
         }

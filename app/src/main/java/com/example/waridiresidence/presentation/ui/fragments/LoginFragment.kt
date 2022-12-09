@@ -11,6 +11,7 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.example.waridiresidence.R
 import com.example.waridiresidence.data.model.modelrequest.LoginRequest
+import com.example.waridiresidence.data.model.modelrequest.house.UserHouseRequest
 import com.example.waridiresidence.databinding.FragmentLoginBinding
 import com.example.waridiresidence.presentation.ui.agent.activities.HomeAgentActivity
 import com.example.waridiresidence.presentation.ui.client.activities.HomeClientActivity
@@ -99,8 +100,12 @@ class LoginFragment: Fragment(R.layout.fragment_login) {
                             //navigate to home fragment
                             //findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
 
-                            //navigate to HomeActivity
+                            //navigate to Agent HomeActivity
                             if (Constants.userType.equals("A")){
+
+                                checkIfHousesAlreadyExists()
+
+                                //intant to navigate to Home Activity
                                 Intent(requireContext(), HomeAgentActivity::class.java).also {
                                     requireContext().startActivity(it)
                                 }
@@ -123,6 +128,43 @@ class LoginFragment: Fragment(R.layout.fragment_login) {
                     }
 
                     is Resource.Loading -> {
+                        showProgressBar()
+                    }
+                }
+            }
+        })
+    }
+
+    private fun checkIfHousesAlreadyExists() {
+        /**
+         * If user doesnt have UserHouse Object, then create
+         */
+        if (Constants.hasHouses == false){ //false ...therefore create UserHouse Object
+            registerUserHouse()
+        }
+    }
+
+    private fun registerUserHouse() {
+        val userHouseRequest = UserHouseRequest(agentId = Constants.id,
+            agentName = Constants.fname+" "+Constants.lname,
+            phone = Constants.phone
+        )
+
+        viewModel.registerUserHouse(userHouseRequest)
+        viewModel.registerUserHouseData.observe(viewLifecycleOwner, Observer { event ->
+            event.getContentIfNotHandled()?.let { response ->
+                when(response){
+                    is Resource.Success ->{
+                        hideProgressBar()
+                        response.data?.let { userHouseResponse ->
+                            //update user house object
+                        }
+                    }
+                    is Resource.Error ->{
+                        hideKeyboard()
+                        response.message?.let { requireContext().toast(it) }
+                    }
+                    is Resource.Loading ->{
                         showProgressBar()
                     }
                 }
