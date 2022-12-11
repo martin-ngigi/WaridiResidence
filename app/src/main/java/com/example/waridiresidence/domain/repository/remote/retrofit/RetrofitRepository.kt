@@ -29,14 +29,14 @@ class RetrofitRepository @Inject constructor(
         return  apiService.updateUser(userRequest, Constants.id, "Bearer ${Constants.access}")
     }
 
-    suspend fun getRegisterUserHouse(userHouseRequest: UserHouseRequest): Response<UserHouseResponse>{
+    suspend fun getRegisterUserHouse22(userHouseRequest: UserHouseRequest): Response<UserHouseResponse>{
         /**
          * Added Bearer to solve :
          * java.lang.NullPointerException
         at com.example.waridiresidence.presentation.viewmodel.LoginViewModel.getRegisterUserHouse(LoginViewModel.kt:154)
         at com.example.waridiresidence.presentation.viewmodel.LoginViewModel.access$getRegisterUserHouse(LoginViewModel.kt:20)
          */
-        return apiService.registerUserHouse(userHouseRequest, "Bearer ${Constants.access}")
+        return apiService.registerUserHouse22(userHouseRequest, "Bearer ${Constants.access}")
     }
 
 }

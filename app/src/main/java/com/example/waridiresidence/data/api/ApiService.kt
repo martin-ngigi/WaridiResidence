@@ -29,7 +29,8 @@ interface ApiService {
 
     //register user record for storing houses, images... i.e separate users accounts from houses accounts
     @POST("/houses/users/")
-    suspend fun registerUserHouse(@Body userHouseRequest: UserHouseRequest, @Header("Authorization") access: String): Response<UserHouseResponse>
+    suspend fun registerUserHouse22(@Body userHouseRequest: UserHouseRequest, @Header("Authorization") access: String): Response<UserHouseResponse>
+
 
     //update user profile
     @Headers("Content-Type: application/json")
