@@ -31,7 +31,7 @@ class HomeClientActivity : AppCompatActivity() {
 
         setSupportActionBar(myToolbar)
         navController = findNavController(R.id.fragmentContainerViewClient)
-        appBarConfiguration = AppBarConfiguration(setOf(R.id.id_homeClientFragment, R.id.id_profileClientFragment, R.id.id_settingsClientFragment), drawer_layout)
+        appBarConfiguration = AppBarConfiguration(setOf(R.id.id_homeClientFragment, R.id.id_profileClientFragment, R.id.id_settingsClientFragment, R.id.id_loginFragment), drawer_layout)
         setupActionBarWithNavController(navController, binding.drawerLayout)
         navigationView.setupWithNavController(navController)
 

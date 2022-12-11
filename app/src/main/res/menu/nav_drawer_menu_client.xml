@@ -16,12 +16,19 @@
         android:checkable="true"
         />
 
-
     <item
         android:id="@+id/id_settingsClientFragment"
         android:title="Settings"
         android:icon="@drawable/ic_baseline_settings_24"
         android:checkable="true"
         />
+
+    <item
+        android:id="@+id/id_loginFragment"
+        android:title="Logout"
+        android:icon="@drawable/ic_baseline_power_settings_new_24"
+        android:checkable="true"
+        />
+
 
 </menu>
