@@ -15,7 +15,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import com.bumptech.glide.Glide
 import com.example.waridiresidence.R
-import com.example.waridiresidence.data.model.modelrequest.UserProfileRequest
+import com.example.waridiresidence.data.model.modelrequest.UserAgentProfileRequest
 import com.example.waridiresidence.databinding.FragmentProfileAgentBinding
 import com.example.waridiresidence.presentation.ui.agent.viewmodels.ProfileAgentViewModel
 import com.example.waridiresidence.util.*
@@ -150,11 +150,11 @@ class ProfileAgentFragment : Fragment(R.layout.fragment_profile_agent) {
 
     //val max = if (a > b) a else b
     private fun updateToDB() {
-        val userRequest = UserProfileRequest(
+        val userRequest = UserAgentProfileRequest(
             firstName=firstName,
             lastName = lastName,
             phone = phone,
-            profileImage =  if (imageUri.toString().isNotEmpty()) imageUri.toString() else "",
+            profileImage =  if (imageUri.toString().isNotEmpty()) imageUri.toString() else Constants.profile_image,
             hasHouses = Constants.hasHouses
         )
 
@@ -164,7 +164,7 @@ class ProfileAgentFragment : Fragment(R.layout.fragment_profile_agent) {
             profileImage = imageUri.toString()
         }
         else{
-            profileImage = ""
+            profileImage = Constants.profile_image
         }
         */
 

@@ -6,7 +6,7 @@ import androidx.annotation.Keep
 import java.io.Serializable
 
 @Keep
-data class UserProfileRequest(
+data class UserAgentProfileRequest(
     /**
     {
     "phone": "07972922901",

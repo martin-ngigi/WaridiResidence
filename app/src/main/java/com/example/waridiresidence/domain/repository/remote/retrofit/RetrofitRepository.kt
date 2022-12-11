@@ -3,12 +3,12 @@ package com.example.waridiresidence.domain.repository.remote.retrofit
 import com.example.waridiresidence.data.api.ApiService
 import com.example.waridiresidence.data.model.modelrequest.LoginRequest
 import com.example.waridiresidence.data.model.modelrequest.UserClientProfileRequest
-import com.example.waridiresidence.data.model.modelrequest.UserProfileRequest
+import com.example.waridiresidence.data.model.modelrequest.UserAgentProfileRequest
 import com.example.waridiresidence.data.model.modelrequest.UserRequest
 import com.example.waridiresidence.data.model.modelrequest.house.UserHouseRequest
 import com.example.waridiresidence.data.model.modelresponse.LoginResponse
 import com.example.waridiresidence.data.model.modelresponse.UserClientProfileResponse
-import com.example.waridiresidence.data.model.modelresponse.UserProfileResponse
+import com.example.waridiresidence.data.model.modelresponse.UserAgentProfileResponse
 import com.example.waridiresidence.data.model.modelresponse.UserResponse
 import com.example.waridiresidence.data.model.modelresponse.house.UserHouseResponse
 import com.example.waridiresidence.util.Constants
@@ -27,15 +27,12 @@ class RetrofitRepository @Inject constructor(
         return apiService.registerUser(userRequest)
     }
 
-    suspend fun getUpdateUser(userRequest: UserProfileRequest): Response<UserProfileResponse>{
-        return  apiService.updateUser(userRequest, Constants.id, "Bearer ${Constants.access}")
-    }
 
     suspend fun getUpdateUserClient(userClientProfileRequest: UserClientProfileRequest): Response<UserClientProfileResponse>{
         return  apiService.updateClientUser(userClientProfileRequest, Constants.id, "Bearer ${Constants.access}")
     }
 
-    suspend fun getUpdateUser22(userRequest: UserProfileRequest): Response<UserProfileResponse>{
+    suspend fun getUpdateUser22(userRequest: UserAgentProfileRequest): Response<UserAgentProfileResponse>{
         return  apiService.updateUser(userRequest, Constants.id, "Bearer ${Constants.access}")
     }
 

@@ -16,7 +16,6 @@ import androidx.lifecycle.Observer
 import com.bumptech.glide.Glide
 import com.example.waridiresidence.R
 import com.example.waridiresidence.data.model.modelrequest.UserClientProfileRequest
-import com.example.waridiresidence.data.model.modelrequest.UserProfileRequest
 import com.example.waridiresidence.databinding.FragmentProfileClientBinding
 import com.example.waridiresidence.presentation.ui.client.viewmodels.ProfileClientViewModel
 import com.example.waridiresidence.util.*
@@ -32,6 +31,7 @@ class ProfileClientFragment : Fragment(R.layout.fragment_profile_client) {
     private val TAG : String = "ProfileFragment"
     private val viewModel: ProfileClientViewModel by viewModels()
     private lateinit var imageUri: Uri
+    private var isImageSelected = false
     private lateinit var firstName: String
     private lateinit var lastName: String
     private lateinit var phone: String
@@ -44,6 +44,7 @@ class ProfileClientFragment : Fragment(R.layout.fragment_profile_client) {
             binding.loginProgress.loadingProgress.hide()
             val fileUri = data?.data!!
             imageUri = fileUri
+            isImageSelected = true
 
             binding.uploadTV.show()
             binding.upLoadBtn.visibility = View.VISIBLE
@@ -99,7 +100,9 @@ class ProfileClientFragment : Fragment(R.layout.fragment_profile_client) {
 
         binding.upLoadBtn.setOnClickListener {
             binding.loginProgress.loadingProgress.show()
-            uploadImageToStorage()
+            if (isImageSelected){
+                uploadImageToStorage()
+            }
             getUserProfileData()
         }
 
@@ -156,7 +159,7 @@ class ProfileClientFragment : Fragment(R.layout.fragment_profile_client) {
             firstName=firstName,
             lastName = lastName,
             phone = phone,
-            profileImage =  if (imageUri.toString().isNotEmpty()) imageUri.toString() else ""
+            profileImage =  if (imageUri.toString().isNotEmpty()) imageUri.toString() else Constants.profile_image
         )
 
         //profileImage is statement
@@ -165,7 +168,7 @@ class ProfileClientFragment : Fragment(R.layout.fragment_profile_client) {
             profileImage = imageUri.toString()
         }
         else{
-            profileImage = ""
+            profileImage = Constants.profile_image
         }
         */
 

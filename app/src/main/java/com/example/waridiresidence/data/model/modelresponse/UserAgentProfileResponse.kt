@@ -6,7 +6,7 @@ import androidx.annotation.Keep
 import java.io.Serializable
 
 @Keep
-data class UserProfileResponse(
+data class UserAgentProfileResponse(
     /**
     {
     "id": 1,

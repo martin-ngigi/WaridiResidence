@@ -8,7 +8,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.waridiresidence.WaridiResidence
 import com.example.waridiresidence.data.model.modelrequest.UserRequest
-import com.example.waridiresidence.data.model.modelresponse.UserProfileResponse
 import com.example.waridiresidence.data.model.modelresponse.UserResponse
 import com.example.waridiresidence.domain.repository.remote.retrofit.RetrofitRepository
 import com.example.waridiresidence.util.Event

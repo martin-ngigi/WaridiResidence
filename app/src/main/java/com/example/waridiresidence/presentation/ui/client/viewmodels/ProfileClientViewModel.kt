@@ -5,13 +5,10 @@ import android.net.Uri
 import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.waridiresidence.WaridiResidence
 import com.example.waridiresidence.data.model.modelrequest.UserClientProfileRequest
-import com.example.waridiresidence.data.model.modelrequest.UserProfileRequest
 import com.example.waridiresidence.data.model.modelresponse.UserClientProfileResponse
-import com.example.waridiresidence.data.model.modelresponse.UserProfileResponse
 import com.example.waridiresidence.domain.repository.remote.firebase.WaridiRepositoryF
 import com.example.waridiresidence.domain.repository.remote.retrofit.RetrofitRepository
 import com.example.waridiresidence.util.*

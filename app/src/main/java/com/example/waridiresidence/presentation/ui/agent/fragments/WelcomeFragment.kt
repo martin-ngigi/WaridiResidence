@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import com.example.waridiresidence.R
-import com.example.waridiresidence.data.model.modelrequest.UserProfileRequest
+import com.example.waridiresidence.data.model.modelrequest.UserAgentProfileRequest
 import com.example.waridiresidence.databinding.FragmentWelcomeBinding
 
 import com.example.waridiresidence.presentation.ui.agent.activities.HomeAgentActivity
@@ -66,7 +66,7 @@ class WelcomeFragment: Fragment(R.layout.fragment_welcome) {
 
     private fun updateUserHouseObjectToTrue() {
 
-        val userRequest = UserProfileRequest(
+        val userRequest = UserAgentProfileRequest(
             firstName=Constants.fname,
             lastName = Constants.lname,
             phone = Constants.phone,
