@@ -8,7 +8,9 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.waridiresidence.WaridiResidence
+import com.example.waridiresidence.data.model.modelrequest.UserClientProfileRequest
 import com.example.waridiresidence.data.model.modelrequest.UserProfileRequest
+import com.example.waridiresidence.data.model.modelresponse.UserClientProfileResponse
 import com.example.waridiresidence.data.model.modelresponse.UserProfileResponse
 import com.example.waridiresidence.domain.repository.remote.firebase.WaridiRepositoryF
 import com.example.waridiresidence.domain.repository.remote.retrofit.RetrofitRepository
@@ -28,23 +30,23 @@ class ProfileClientViewModel @Inject constructor(
 
     val TAG = "ProfilePage"
 
-    private val _updateUserData = MutableLiveData<Event<Resource<UserProfileResponse>>>()
-    val updateUserData: MutableLiveData<Event<Resource<UserProfileResponse>>> = _updateUserData
+    private val _updateUserData = MutableLiveData<Event<Resource<UserClientProfileResponse>>>()
+    val updateUserData: MutableLiveData<Event<Resource<UserClientProfileResponse>>> = _updateUserData
 
-    fun updateUser(userProfileRequest: UserProfileRequest) = viewModelScope.launch {
-        getUpdateUser(userProfileRequest)
+    fun updateUser(userClientProfileRequest: UserClientProfileRequest) = viewModelScope.launch {
+        getUpdateUser(userClientProfileRequest)
     }
 
-    private suspend fun getUpdateUser(userRequest: UserProfileRequest) {
+    private suspend fun getUpdateUser(userRequest: UserClientProfileRequest) {
         _updateUserData.postValue(Event((Resource.Loading())))
         try {
             if (hasInternetConnection<WaridiResidence>()){
-                val response = repositoryRetrofit.getUpdateUser(userRequest)
+                val response = repositoryRetrofit.getUpdateUserClient(userRequest)
                 if (response.isSuccessful){
                     Log.i(TAG, "First stage of updating is successful.: ")
                     if (response.body()!!.id.toString().isNotEmpty()){ //if id is not null/empty means user was registered successfully
                         Log.i(TAG, "updating is successful. ")
-                        val successResponse: UserProfileResponse? = response.body()
+                        val successResponse: UserClientProfileResponse? = response.body()
                         toast(getApplication(), "${successResponse!!.firstName} Updated successfully")
                         _updateUserData.postValue(Event(Resource.Success(response.body()!!)))
                         //save updated data to constants
@@ -53,7 +55,7 @@ class ProfileClientViewModel @Inject constructor(
                     }
                 }
                 else if (response.body()!!.id.toString().isNullOrEmpty()){
-                    val errorResponse: UserProfileResponse? = response.body()
+                    val errorResponse: UserClientProfileResponse? = response.body()
                     toast(getApplication(), "Error: An error was encountered while updating in.\nHint${errorResponse}")
                     Log.e(TAG, "Error: An error was encountered while updating in. \nHint${errorResponse} ", )
                 }
@@ -84,7 +86,7 @@ class ProfileClientViewModel @Inject constructor(
         }
     }
 
-    private fun updatedConstantsUserData(successResponse: UserProfileResponse) {
+    private fun updatedConstantsUserData(successResponse: UserClientProfileResponse) {
         Constants.fname = successResponse!!.firstName
         Constants.lname = successResponse!!.lastName
         Constants.phone = successResponse!!.phone

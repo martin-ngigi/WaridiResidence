@@ -15,6 +15,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import com.bumptech.glide.Glide
 import com.example.waridiresidence.R
+import com.example.waridiresidence.data.model.modelrequest.UserClientProfileRequest
 import com.example.waridiresidence.data.model.modelrequest.UserProfileRequest
 import com.example.waridiresidence.databinding.FragmentProfileClientBinding
 import com.example.waridiresidence.presentation.ui.client.viewmodels.ProfileClientViewModel
@@ -66,6 +67,7 @@ class ProfileClientFragment : Fragment(R.layout.fragment_profile_client) {
         super.onViewCreated(view, savedInstanceState)
 
         //binding = FragmentProfileBinding.bind(view)
+        toast("Name : ${Constants.fname}")
        updateUI()
         observer()
     }
@@ -150,12 +152,11 @@ class ProfileClientFragment : Fragment(R.layout.fragment_profile_client) {
 
     //val max = if (a > b) a else b
     private fun updateToDB() {
-        val userRequest = UserProfileRequest(
+        val userRequest = UserClientProfileRequest(
             firstName=firstName,
             lastName = lastName,
             phone = phone,
-            profileImage =  if (imageUri.toString().isNotEmpty()) imageUri.toString() else "",
-            hasHouses = Constants.hasHouses
+            profileImage =  if (imageUri.toString().isNotEmpty()) imageUri.toString() else ""
         )
 
         //profileImage is statement
