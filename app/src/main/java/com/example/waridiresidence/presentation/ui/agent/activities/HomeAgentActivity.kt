@@ -31,7 +31,7 @@ class HomeAgentActivity : AppCompatActivity() {
 
         setSupportActionBar(myToolbar)
         navController = findNavController(R.id.fragmentContainerViewAgent)
-        appBarConfiguration = AppBarConfiguration(setOf(R.id.id_homeAgentFragment, R.id.id_profileAgentFragment, R.id.id_settingsAgentFragment), drawer_layout)
+        appBarConfiguration = AppBarConfiguration(setOf(R.id.id_homeAgentFragment, R.id.id_profileAgentFragment, R.id.id_settingsAgentFragment, R.id.id_loginFragment), drawer_layout)
         setupActionBarWithNavController(navController, drawer_layout)
         navigationView.setupWithNavController(navController)
 
