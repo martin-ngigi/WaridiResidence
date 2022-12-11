@@ -106,11 +106,6 @@ class LoginFragment: Fragment(R.layout.fragment_login) {
                             if (Constants.userType.equals("A")){
 
                                 checkIfHousesAlreadyExists()
-
-                                //intant to navigate to Home Activity
-//                                Intent(requireContext(), HomeAgentActivity::class.java).also {
-//                                    requireContext().startActivity(it)
-//                                }
                             }
                             else if (Constants.userType.equals("C")){
                                 Intent(requireContext(), HomeClientActivity::class.java).also {
@@ -149,6 +144,7 @@ class LoginFragment: Fragment(R.layout.fragment_login) {
             Intent(requireContext(), HomeAgentActivity::class.java).also {
                 requireContext().startActivity(it)
             }
+
         }
     }
 

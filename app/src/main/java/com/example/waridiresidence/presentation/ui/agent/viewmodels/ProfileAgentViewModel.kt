@@ -39,7 +39,7 @@ class ProfileAgentViewModel @Inject constructor(
         _updateUserData.postValue(Event((Resource.Loading())))
         try {
             if (hasInternetConnection<WaridiResidence>()){
-                val response = repositoryRetrofit.getUpdateUser(userRequest)
+                val response = repositoryRetrofit.getUpdateUser22(userRequest)
                 if (response.isSuccessful){
                     Log.i(TAG, "First stage of updating is successful.: ")
                     if (response.body()!!.id.toString().isNotEmpty()){ //if id is not null/empty means user was registered successfully

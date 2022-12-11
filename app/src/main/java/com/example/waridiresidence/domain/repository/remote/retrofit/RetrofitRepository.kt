@@ -29,6 +29,10 @@ class RetrofitRepository @Inject constructor(
         return  apiService.updateUser(userRequest, Constants.id, "Bearer ${Constants.access}")
     }
 
+    suspend fun getUpdateUser22(userRequest: UserProfileRequest): Response<UserProfileResponse>{
+        return  apiService.updateUser(userRequest, Constants.id, "Bearer ${Constants.access}")
+    }
+
     suspend fun getRegisterUserHouse22(userHouseRequest: UserHouseRequest): Response<UserHouseResponse>{
         /**
          * Added Bearer to solve :

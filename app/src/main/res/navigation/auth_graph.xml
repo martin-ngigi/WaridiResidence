@@ -40,6 +40,23 @@
         android:id="@+id/loginCongratsAgentFragment"
         android:name="com.example.waridiresidence.presentation.ui.agent.fragments.LoginCongratsFragment"
         android:label="fragment_login_congrats_agent"
-        tools:layout="@layout/fragment_login_congrats_agent" />
+        tools:layout="@layout/fragment_login_congrats_agent" >
+<!--        <action-->
+<!--            android:id="@+id/action_loginCongratsAgentFragment_to_welcomeFragment3"-->
+<!--            app:destination="@id/welcomeFragment" />-->
+        <action
+            android:id="@+id/action_loginCongratsAgentFragment_to_welcome223"
+            app:destination="@id/welcome223" />
+    </fragment>
+    <fragment
+        android:id="@+id/welcome223"
+        android:name="com.example.waridiresidence.presentation.ui.agent.fragments.WelcomeAgentFragment"
+        android:label="fragment_welcome"
+        tools:layout="@layout/fragment_welcome" />
+    <!--    <fragment-->
+<!--        android:id="@+id/welcomeFragment"-->
+<!--        android:name="com.example.waridiresidence.presentation.ui.agent.fragments.Welcome22"-->
+<!--        android:label="fragment_welcome"-->
+<!--        tools:layout="@layout/fragment_welcome" />-->
 
 </navigation>

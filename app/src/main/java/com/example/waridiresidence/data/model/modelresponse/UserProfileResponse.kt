@@ -25,5 +25,7 @@ data class UserProfileResponse(
     @SerializedName("phone")
     val phone: String,
     @SerializedName("profile_image")
-    val profileImage: String
+    val profileImage: String,
+    @SerializedName("has_houses")
+    val hasHouses: Boolean
 ): Serializable

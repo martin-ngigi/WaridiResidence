@@ -154,7 +154,8 @@ class ProfileClientFragment : Fragment(R.layout.fragment_profile_client) {
             firstName=firstName,
             lastName = lastName,
             phone = phone,
-            profileImage =  if (imageUri.toString().isNotEmpty()) imageUri.toString() else ""
+            profileImage =  if (imageUri.toString().isNotEmpty()) imageUri.toString() else "",
+            hasHouses = Constants.hasHouses
         )
 
         //profileImage is statement

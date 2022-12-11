@@ -38,4 +38,5 @@ interface ApiService {
 //    suspend fun  updateUser(@Body userProfileRequest: UserProfileRequest,@Path(value = "pk")id:Int): Response<UserProfileResponse>
     //suspend fun  updateUser(@Body userProfileRequest: UserProfileRequest,@Path("pk") id:Int, @Header("Authorization") value:String ): Response<UserProfileResponse>
     suspend fun  updateUser(@Body userProfileRequest: UserProfileRequest,@Path("pk") id:Int, @Header("Authorization")access: String): Response<UserProfileResponse>
+
 }

@@ -28,7 +28,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class ProfileAgentFragment : Fragment(R.layout.fragment_profile_agent) {
     private lateinit var binding: FragmentProfileAgentBinding
 
-    private val TAG : String = "ProfileFragment"
+    private val TAG : String = "ProfileAgentFragment"
     private val viewModel: ProfileAgentViewModel by viewModels()
     private lateinit var imageUri: Uri
     private lateinit var firstName: String
@@ -154,7 +154,8 @@ class ProfileAgentFragment : Fragment(R.layout.fragment_profile_agent) {
             firstName=firstName,
             lastName = lastName,
             phone = phone,
-            profileImage =  if (imageUri.toString().isNotEmpty()) imageUri.toString() else ""
+            profileImage =  if (imageUri.toString().isNotEmpty()) imageUri.toString() else "",
+            hasHouses = Constants.hasHouses
         )
 
         //profileImage is statement
