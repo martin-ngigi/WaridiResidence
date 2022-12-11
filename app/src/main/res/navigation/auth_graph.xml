@@ -24,8 +24,8 @@
             android:id="@+id/action_loginFragment_to_signupFragment"
             app:destination="@id/signupFragment" />
         <action
-            android:id="@+id/action_loginFragment_to_homeFragment"
-            app:destination="@id/homeFragment" />
+            android:id="@+id/action_loginFragment_to_loginCongratsAgentFragment"
+            app:destination="@id/loginCongratsAgentFragment" />
     </fragment>
     <fragment
         android:id="@+id/signupFragment"
@@ -37,9 +37,9 @@
             app:destination="@id/loginFragment" />
     </fragment>
     <fragment
-        android:id="@+id/homeFragment"
-        android:name="com.example.waridiresidence.presentation.ui.fragments.HomeFragment"
-        android:label="fragment_home"
-        tools:layout="@layout/fragment_home" />
+        android:id="@+id/loginCongratsAgentFragment"
+        android:name="com.example.waridiresidence.presentation.ui.agent.fragments.LoginCongratsAgentFragment"
+        android:label="fragment_login_congrats_agent"
+        tools:layout="@layout/fragment_login_congrats_agent" />
 
 </navigation>

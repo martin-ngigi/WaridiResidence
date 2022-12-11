@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.provider.Settings
+import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -21,6 +22,7 @@ import com.example.waridiresidence.presentation.viewmodel.LoginViewModel
 import com.example.waridiresidence.util.Constants
 import com.example.waridiresidence.util.Utils.toast
 import com.example.waridiresidence.util.Utils.validateLoginRequest
+import com.example.waridiresidence.util.toast
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_login.*
 
@@ -106,9 +108,9 @@ class LoginFragment: Fragment(R.layout.fragment_login) {
                                 checkIfHousesAlreadyExists()
 
                                 //intant to navigate to Home Activity
-                                Intent(requireContext(), HomeAgentActivity::class.java).also {
-                                    requireContext().startActivity(it)
-                                }
+//                                Intent(requireContext(), HomeAgentActivity::class.java).also {
+//                                    requireContext().startActivity(it)
+//                                }
                             }
                             else if (Constants.userType.equals("C")){
                                 Intent(requireContext(), HomeClientActivity::class.java).also {
@@ -140,37 +142,55 @@ class LoginFragment: Fragment(R.layout.fragment_login) {
          * If user doesnt have UserHouse Object, then create
          */
         if (Constants.hasHouses == false){ //false ...therefore create UserHouse Object
-            registerUserHouse()
+            //registerUserHouse()
+            findNavController().navigate(R.id.action_loginFragment_to_loginCongratsAgentFragment)
         }
     }
 
     private fun registerUserHouse() {
-        val userHouseRequest = UserHouseRequest(agentId = Constants.id,
-            agentName = Constants.fname+" "+Constants.lname,
+        Log.e(TAG, "I am here 0 ", )
+        val userHouseRequest = UserHouseRequest(
+            agentId = Constants.id,
+            agentName = Constants.fname +" "+Constants.lname,
             phone = Constants.phone
         )
-
+        Log.e(TAG, "I am here 1 ", )
         viewModel.registerUserHouse(userHouseRequest)
+        Log.e(TAG, "I am here 2 ", )
         viewModel.registerUserHouseData.observe(viewLifecycleOwner, Observer { event ->
-            event.getContentIfNotHandled()?.let { response ->
+            Log.e(TAG, "I am here 3 ", )
+            event.getContentIfNotHandled()?.let {  response ->
+                Log.e(TAG, "I am here 4 ", )
                 when(response){
-                    is Resource.Success ->{
+
+                    is Resource.Success -> {
                         hideProgressBar()
                         response.data?.let { userHouseResponse ->
-                            //update user house object
+                            Log.i(TAG, "registerUserHouse: HOUSE REGISTERED SUCCESSFULLY... :-)")
+
                         }
                     }
+
                     is Resource.Error ->{
-                        hideKeyboard()
-                        response.message?.let { requireContext().toast(it) }
+                        hideProgressBar()
+                        Log.e(TAG, "registerUserHouse: ERROR HAS OCCURRED", )
+                        response.message?.let {
+                            requireContext().toast(it)
+                            Log.e(TAG, "registerUserHouse: ERROR $it", )
+                        }
                     }
-                    is Resource.Loading ->{
+
+                    is Resource.Loading -> {
                         showProgressBar()
                     }
                 }
             }
         })
+
     }
+
+    //registerUserHouse
+
 
     private fun showProgressBar() {
         login_progress.visibility = View.VISIBLE
