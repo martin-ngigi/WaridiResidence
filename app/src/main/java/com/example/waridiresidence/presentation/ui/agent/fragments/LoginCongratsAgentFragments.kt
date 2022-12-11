@@ -21,7 +21,7 @@ import com.example.waridiresidence.util.Utils.validateUserHouseRequest
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class LoginCongratsAgentFraments : Fragment(R.layout.fragment_login_congrats_agent) {
+class LoginCongratsAgentFragments : Fragment(R.layout.fragment_login_congrats_agent) {
     private lateinit var binding: FragmentLoginCongratsAgentBinding
 
     private val TAG : String = "LoginCongratsAgent"
@@ -74,6 +74,11 @@ class LoginCongratsAgentFraments : Fragment(R.layout.fragment_login_congrats_age
         Log.i(TAG, "I AM HERE 2")
         viewModel.registerUserHouseData.observe(viewLifecycleOwner, Observer { event->
             Log.i(TAG, "I AM HERE 3")
+            //THIS IS LOGICAL ERROR SINCE  INTENT SHOULD BE ADDED INSIDE   is Resource.Success -> {}
+            Intent(requireContext(), HomeAgentActivity::class.java).also {
+                startActivity(it)
+            }
+
             event.getContentIfNotHandled()?.let { response ->
                 when(response){
                     is Resource.Success -> {
