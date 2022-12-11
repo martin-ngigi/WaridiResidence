@@ -32,6 +32,14 @@ object Utils {
 
     }
 
+
+    fun validateUserHouseRequest(agentId: Int, agentName: String, phone: String): ValidationResult{
+        if (agentId.toString().isEmpty()) return  ValidationResult(false, "Agent Id is Empty")
+        if (agentName.isEmpty()) return  ValidationResult(false, "agent Name is Empty")
+        if (phone.isEmpty()) return  ValidationResult(false, "phone is Empty")
+        return ValidationResult(true)
+    }
+
     fun validateProfileRequest(firstname: String,
                                 lastname: String,
                                 phone: String,

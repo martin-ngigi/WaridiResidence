@@ -32,6 +32,15 @@
                 android:background="@color/white"
                 android:layout_height="match_parent">
 
+<!--                <com.airbnb.lottie.LottieAnimationView-->
+<!--                    android:id="@+id/lottieAnimCongratulations"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:background="#0DAEABAB"-->
+<!--                    app:lottie_autoPlay="true"-->
+<!--                    app:lottie_loop="true"-->
+<!--                    app:lottie_url="https://assets1.lottiefiles.com/packages/lf20_l4xxtfd3.json" />-->
+
                 <com.airbnb.lottie.LottieAnimationView
                     android:id="@+id/lottieAnimCongratulations"
                     android:layout_width="match_parent"
@@ -39,7 +48,8 @@
                     android:background="#0DAEABAB"
                     app:lottie_autoPlay="true"
                     app:lottie_loop="true"
-                    app:lottie_url="https://assets1.lottiefiles.com/packages/lf20_l4xxtfd3.json" />
+                    app:lottie_rawRes="@raw/loading"
+                    />
 
 
                 <TextView
@@ -83,6 +93,13 @@
         android:layout_marginBottom="5dp"
         android:text="Home"
         android:textAllCaps="false" />
+
+    <include
+        android:id="@+id/login_progress"
+        layout="@layout/progress_bar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"/>
 
 
 </RelativeLayout>

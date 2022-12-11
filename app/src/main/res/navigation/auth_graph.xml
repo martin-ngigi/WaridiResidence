@@ -38,7 +38,7 @@
     </fragment>
     <fragment
         android:id="@+id/loginCongratsAgentFragment"
-        android:name="com.example.waridiresidence.presentation.ui.agent.fragments.LoginCongratsAgentFragment"
+        android:name="com.example.waridiresidence.presentation.ui.agent.fragments.LoginCongratsAgentFraments"
         android:label="fragment_login_congrats_agent"
         tools:layout="@layout/fragment_login_congrats_agent" />
 

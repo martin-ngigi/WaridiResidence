@@ -141,56 +141,16 @@ class LoginFragment: Fragment(R.layout.fragment_login) {
         /**
          * If user doesnt have UserHouse Object, then create
          */
-        if (Constants.hasHouses == false){ //false ...therefore create UserHouse Object
-            //registerUserHouse()
+        if (Constants.hasHouses == false){ //false ...navigate to LoginCongrates Fragment so as to register User House Object
             findNavController().navigate(R.id.action_loginFragment_to_loginCongratsAgentFragment)
         }
-    }
-
-    private fun registerUserHouse() {
-        Log.e(TAG, "I am here 0 ", )
-        val userHouseRequest = UserHouseRequest(
-            agentId = Constants.id,
-            agentName = Constants.fname +" "+Constants.lname,
-            phone = Constants.phone
-        )
-        Log.e(TAG, "I am here 1 ", )
-        viewModel.registerUserHouse(userHouseRequest)
-        Log.e(TAG, "I am here 2 ", )
-        viewModel.registerUserHouseData.observe(viewLifecycleOwner, Observer { event ->
-            Log.e(TAG, "I am here 3 ", )
-            event.getContentIfNotHandled()?.let {  response ->
-                Log.e(TAG, "I am here 4 ", )
-                when(response){
-
-                    is Resource.Success -> {
-                        hideProgressBar()
-                        response.data?.let { userHouseResponse ->
-                            Log.i(TAG, "registerUserHouse: HOUSE REGISTERED SUCCESSFULLY... :-)")
-
-                        }
-                    }
-
-                    is Resource.Error ->{
-                        hideProgressBar()
-                        Log.e(TAG, "registerUserHouse: ERROR HAS OCCURRED", )
-                        response.message?.let {
-                            requireContext().toast(it)
-                            Log.e(TAG, "registerUserHouse: ERROR $it", )
-                        }
-                    }
-
-                    is Resource.Loading -> {
-                        showProgressBar()
-                    }
-                }
+        else{
+            //navigate to home
+            Intent(requireContext(), HomeAgentActivity::class.java).also {
+                requireContext().startActivity(it)
             }
-        })
-
+        }
     }
-
-    //registerUserHouse
-
 
     private fun showProgressBar() {
         login_progress.visibility = View.VISIBLE
