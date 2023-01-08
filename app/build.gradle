@@ -149,5 +149,6 @@ dependencies {
     //StepProgress
     implementation 'com.github.funriser:StepProgress:0.1.0'
 
-
+    //For requesting permissions at runtime
+    implementation 'com.karumi:dexter:6.2.2'
 }

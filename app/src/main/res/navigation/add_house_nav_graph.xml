@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/add_house_nav_graph"
+    app:startDestination="@id/addHouseAgentFragment">
+
+    <fragment
+        android:id="@+id/addHouseAgentFragment"
+        android:name="com.example.waridiresidence.presentation.ui.agent.fragments.AddHouseAgentFragment"
+        android:label="fragment_add_house_agent"
+        tools:layout="@layout/fragment_add_house_agent" />
+</navigation>

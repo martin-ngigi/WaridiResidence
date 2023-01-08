@@ -55,6 +55,28 @@ object Utils {
 
     }
 
+    fun validateHouseDescription(
+        title: String,
+        description: String,
+        location: String,
+        price: String
+    ):ValidationResult{
+        if (title.isEmpty()) return  ValidationResult(false, "Title Cant be empty")
+        if (description.isEmpty()) return  ValidationResult(false, "Description Cant be empty")
+        if (location.isEmpty()) return  ValidationResult(false, "Location Cant be empty")
+        if (price.isEmpty()) return  ValidationResult(false, "Price Cant be empty")
+        try {
+            //check if input is integer
+            price.toInt()
+            return ValidationResult(true)
+        }
+        catch (e: Exception){
+            return ValidationResult(false)
+        }
+
+        return ValidationResult(true)
+    }
+
     fun Context.toast(message: String) =
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
 

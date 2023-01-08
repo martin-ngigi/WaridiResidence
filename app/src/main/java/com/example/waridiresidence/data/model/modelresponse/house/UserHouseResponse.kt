@@ -33,7 +33,7 @@ data class UserHouseResponse(
     "title": "House 1",
     "category": "One Bedroom",
     "description": "Very spacious room",
-    "loaction": "Lavington, Nairobi",
+    "location": "Lavington, Nairobi",
     "status": "Vacant",
     "add_date": "2022-12-04T19:31:38.993000Z",
     "monthly_price": 100000,
@@ -51,7 +51,7 @@ data class UserHouseResponse(
     @SerializedName("agent_name")
     val agentName: String,
     @SerializedName("houses")
-    val houses: List<House>,
+    val houseResponses: List<HouseResponse>,
     @SerializedName("id")
     val id: Int,
     @SerializedName("phone")

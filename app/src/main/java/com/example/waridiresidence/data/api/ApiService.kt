@@ -4,11 +4,13 @@ import com.example.waridiresidence.data.model.modelrequest.LoginRequest
 import com.example.waridiresidence.data.model.modelrequest.UserClientProfileRequest
 import com.example.waridiresidence.data.model.modelrequest.UserAgentProfileRequest
 import com.example.waridiresidence.data.model.modelrequest.UserRequest
+import com.example.waridiresidence.data.model.modelrequest.house.HouseRequest
 import com.example.waridiresidence.data.model.modelrequest.house.UserHouseRequest
 import com.example.waridiresidence.data.model.modelresponse.LoginResponse
 import com.example.waridiresidence.data.model.modelresponse.UserClientProfileResponse
 import com.example.waridiresidence.data.model.modelresponse.UserAgentProfileResponse
 import com.example.waridiresidence.data.model.modelresponse.UserResponse
+import com.example.waridiresidence.data.model.modelresponse.house.HouseResponse
 import com.example.waridiresidence.data.model.modelresponse.house.UserHouseResponse
 import retrofit2.Response
 import retrofit2.http.*
@@ -44,4 +46,6 @@ interface ApiService {
     @PUT("/auth/update/{pk}/")
     suspend fun  updateClientUser(@Body userClientProfileRequest: UserClientProfileRequest,@Path("pk") id:Int, @Header("Authorization")access: String): Response<UserClientProfileResponse>
 
+    @POST("/houses/houses/")
+    suspend fun addHouseDescription(@Body houseRequest: HouseRequest, @Header("Authorization") access: String): Response<HouseResponse>
 }

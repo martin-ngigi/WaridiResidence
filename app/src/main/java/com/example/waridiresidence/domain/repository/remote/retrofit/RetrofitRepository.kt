@@ -5,11 +5,13 @@ import com.example.waridiresidence.data.model.modelrequest.LoginRequest
 import com.example.waridiresidence.data.model.modelrequest.UserClientProfileRequest
 import com.example.waridiresidence.data.model.modelrequest.UserAgentProfileRequest
 import com.example.waridiresidence.data.model.modelrequest.UserRequest
+import com.example.waridiresidence.data.model.modelrequest.house.HouseRequest
 import com.example.waridiresidence.data.model.modelrequest.house.UserHouseRequest
 import com.example.waridiresidence.data.model.modelresponse.LoginResponse
 import com.example.waridiresidence.data.model.modelresponse.UserClientProfileResponse
 import com.example.waridiresidence.data.model.modelresponse.UserAgentProfileResponse
 import com.example.waridiresidence.data.model.modelresponse.UserResponse
+import com.example.waridiresidence.data.model.modelresponse.house.HouseResponse
 import com.example.waridiresidence.data.model.modelresponse.house.UserHouseResponse
 import com.example.waridiresidence.util.Constants
 import retrofit2.Response
@@ -44,6 +46,10 @@ class RetrofitRepository @Inject constructor(
         at com.example.waridiresidence.presentation.viewmodel.LoginViewModel.access$getRegisterUserHouse(LoginViewModel.kt:20)
          */
         return apiService.registerUserHouse22(userHouseRequest, "Bearer ${Constants.access}")
+    }
+
+    suspend fun getAddHouseDescription(houseRequest: HouseRequest): Response<HouseResponse>{
+        return apiService.addHouseDescription(houseRequest, "Bearer ${Constants.access}")
     }
 
 }

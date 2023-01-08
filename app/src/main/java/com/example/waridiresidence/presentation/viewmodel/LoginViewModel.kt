@@ -101,6 +101,7 @@ class LoginViewModel @Inject constructor(
         Constants.profile_image = body.user.profileImage
         Constants.userType = body.user.userType
         Constants.hasHouses = body.user.hasHouses
+        Constants.idUserHouse = body.user.id
 
 
     }

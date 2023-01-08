@@ -8,7 +8,11 @@
         android:id="@+id/id_homeAgentFragment"
         android:name="com.example.waridiresidence.presentation.ui.agent.fragments.HomeAgentFragment"
         android:label="Home Agent"
-        tools:layout="@layout/fragment_home_agent" />
+        tools:layout="@layout/fragment_home_agent" >
+        <action
+            android:id="@+id/action_id_homeAgentFragment_to_add_house_nav_graph"
+            app:destination="@id/add_house_nav_graph" />
+    </fragment>
     <fragment
         android:id="@+id/id_profileAgentFragment"
         android:name="com.example.waridiresidence.presentation.ui.agent.fragments.ProfileAgentFragment"
@@ -24,5 +28,6 @@
         android:name="com.example.waridiresidence.presentation.ui.fragments.LoginFragment"
         android:label="fragment_login"
         tools:layout="@layout/fragment_login" />
+    <include app:graph="@navigation/add_house_nav_graph" />
 
 </navigation>

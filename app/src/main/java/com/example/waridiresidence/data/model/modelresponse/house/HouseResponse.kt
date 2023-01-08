@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName
 import androidx.annotation.Keep
 
 @Keep
-data class House(
+data class HouseResponse(
     @SerializedName("add_date")
     val addDate: String,
     @SerializedName("category")
@@ -16,8 +16,8 @@ data class House(
     val id: Int,
     @SerializedName("images")
     val images: List<Image>,
-    @SerializedName("loaction")
-    val loaction: String,
+    @SerializedName("location")
+    val location: String,
     @SerializedName("monthly_price")
     val monthlyPrice: Int,
     @SerializedName("status")
