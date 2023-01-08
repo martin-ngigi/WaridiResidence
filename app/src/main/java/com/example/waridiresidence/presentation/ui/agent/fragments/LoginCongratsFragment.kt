@@ -88,8 +88,8 @@ class LoginCongratsFragment: Fragment(R.layout.fragment_login_congrats_agent) {
                         response.data?.let { loginResponse ->
                             Log.i(TAG, "getLogin: SUCCESS REGISTERING HOUSES")
                             //intent to start activity
-                            //checkIfHousesAlreadyExists()
-                            findNavController().navigate(R.id.action_loginCongratsAgentFragment_to_welcome223)
+                            checkIfHousesAlreadyExists()
+                            //findNavController().navigate(R.id.action_loginCongratsAgentFragment_to_welcome223)
 
                         }
                     }
