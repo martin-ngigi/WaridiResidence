@@ -1,25 +1,32 @@
 package com.example.waridiresidence.presentation.ui.agent.fragments
 
+import android.app.Activity
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
+import androidx.activity.result.ActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
+import com.bumptech.glide.Glide
 import com.example.waridiresidence.R
+import com.example.waridiresidence.data.model.modelrequest.house.HouseImageRequest
 import com.example.waridiresidence.data.model.modelrequest.house.HouseRequest
 import com.example.waridiresidence.databinding.FragmentAddHouseAgentBinding
 import com.example.waridiresidence.presentation.ui.agent.viewmodels.AddHouseViewModel
-import com.example.waridiresidence.util.Constants
-import com.example.waridiresidence.util.Resource
+import com.example.waridiresidence.util.*
 import com.example.waridiresidence.util.Utils.toast
 import com.example.waridiresidence.util.Utils.validateHouseDescription
-import com.example.waridiresidence.util.hideKeyboard
-import com.example.waridiresidence.util.toast
+import com.example.waridiresidence.util.Utils.validateHouseImages
+import com.github.dhaval2404.imagepicker.ImagePicker
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.android.synthetic.main.progress_bar.view.*
 
 @AndroidEntryPoint
 class AddHouseAgentFragment: Fragment(R.layout.fragment_add_house_agent){
@@ -31,10 +38,39 @@ class AddHouseAgentFragment: Fragment(R.layout.fragment_add_house_agent){
     lateinit var description: String
     lateinit var location: String
     lateinit var price: String
+    lateinit var imageTitle: String
+    lateinit var imageDescription: String
+    private lateinit var imageUri: Uri
 
     private val TAG = "AddHouseAgentFragment"
 
     lateinit var binding: FragmentAddHouseAgentBinding
+
+    //open gallery
+    private val startForProfileImageResult = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){ result: ActivityResult ->
+        val resultCode = result.resultCode
+        val data = result.data
+        if (resultCode == Activity.RESULT_OK){
+            hideProgressBar()
+            val fileUri = data?.data!!
+            imageUri = fileUri
+            binding.imageCoverRL.visibility = View.GONE
+
+            Glide.with(requireContext())
+                .load(imageUri)
+                .into(binding.houseImageView)
+        }
+        else if (resultCode == ImagePicker.RESULT_ERROR){
+            hideProgressBar()
+            toast(ImagePicker.getError(data))
+        }
+        else{
+            hideProgressBar()
+            toast("Task Cancelled.")
+        }
+    }
+
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentAddHouseAgentBinding.bind(view)
@@ -69,7 +105,8 @@ class AddHouseAgentFragment: Fragment(R.layout.fragment_add_house_agent){
     }
 
     private fun doInit(view: View) {
-        binding.addHouseBtn.setOnClickListener {
+        //add houses description
+        binding.addHouseDescBtn.setOnClickListener {
             hideKeyboard()
             //get data from ui
             //category = binding.categoryTv.text.toString()
@@ -88,6 +125,98 @@ class AddHouseAgentFragment: Fragment(R.layout.fragment_add_house_agent){
             }
         }
 
+        //add houses image
+        binding.houseImageView.setOnClickListener{
+            showProgressBar()
+            ImagePicker.with(this)
+                .compress(1024)
+                .galleryOnly()
+                .createIntent { intent ->
+                    startForProfileImageResult.launch(intent)
+                }
+        }
+
+        //upload images
+        binding.addHomeImagesBtn.setOnClickListener{
+            hideKeyboard()
+            imageTitle = binding.titleImageEt.text.toString()
+            imageDescription = binding.descriptionImageTv.text.toString()
+
+            val result = validateHouseImages(imageTitle, imageDescription)
+            if (result.successful){
+                showProgressBar()
+                uploadImageToStorage()
+                getHouseImages()
+            }
+            else{
+                requireContext().toast("${result.error}")
+            }
+
+        }
+
+        //proceed to home
+        binding.proceedHomeBtn.setOnClickListener{
+            findNavController().navigate(R.id.action_addHouseAgentFragment_to_homeAgentFragment)
+        }
+
+    }
+
+    private fun getHouseImages() {
+        val houseImageRequest = HouseImageRequest(
+            imageTitle,
+            Constants.currentHouseId,
+            imageDescription,
+            imageUri.toString()
+        )
+        viewModel.addHouseImages(houseImageRequest)
+        viewModel.addHouseImages.observe( viewLifecycleOwner, Observer {  event ->
+            event.getContentIfNotHandled()?.let { response ->
+                when(response){
+                    is Resource.Success ->{
+                        hideProgressBar()
+                        response.data?.let { addHouseImagesResponse ->
+                            toast("House Images added Successfully ;-)")
+                            Log.i(TAG, "House Images added Successfully ;-)")
+                            binding.addHomeImagesRL.visibility = View.GONE
+                            binding.congratsRL.visibility = View.VISIBLE
+                        }
+                    }
+                    is Resource.Error ->{
+                        hideProgressBar()
+                        toast("Error adding house Images")
+                        Log.e(TAG, "Error adding House Images ", )
+                        response.message?.let { requireContext().toast(it) }
+
+                    }
+                    is Resource.Loading -> {
+                        showProgressBar()
+                    }
+                }
+            }
+        })
+    }
+
+    private fun uploadImageToStorage() {
+        if (imageUri.toString().isNotEmpty()){
+            viewModel.onUploadSingleFile(imageUri){state ->
+                when(state){
+                    is UiState.Loading -> {
+                        showProgressBar()
+                    }
+                    is UiState.Failure -> {
+                        hideProgressBar()
+                        toast(state.error)
+                    }
+                    is UiState.Success ->{
+                        hideProgressBar()
+                        toast("Image Uploaded successfully.")
+                    }
+                }
+            }
+        }
+        else{
+            toast("You have not selected any image... Or an error occurred while selecting the image")
+        }
     }
 
     private fun getHouseDescription() {

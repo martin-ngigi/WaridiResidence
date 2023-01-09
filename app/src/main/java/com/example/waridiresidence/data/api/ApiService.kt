@@ -4,12 +4,14 @@ import com.example.waridiresidence.data.model.modelrequest.LoginRequest
 import com.example.waridiresidence.data.model.modelrequest.UserClientProfileRequest
 import com.example.waridiresidence.data.model.modelrequest.UserAgentProfileRequest
 import com.example.waridiresidence.data.model.modelrequest.UserRequest
+import com.example.waridiresidence.data.model.modelrequest.house.HouseImageRequest
 import com.example.waridiresidence.data.model.modelrequest.house.HouseRequest
 import com.example.waridiresidence.data.model.modelrequest.house.UserHouseRequest
 import com.example.waridiresidence.data.model.modelresponse.LoginResponse
 import com.example.waridiresidence.data.model.modelresponse.UserClientProfileResponse
 import com.example.waridiresidence.data.model.modelresponse.UserAgentProfileResponse
 import com.example.waridiresidence.data.model.modelresponse.UserResponse
+import com.example.waridiresidence.data.model.modelresponse.house.HouseImageResponse
 import com.example.waridiresidence.data.model.modelresponse.house.HouseResponse
 import com.example.waridiresidence.data.model.modelresponse.house.UserHouseResponse
 import retrofit2.Response
@@ -48,4 +50,8 @@ interface ApiService {
 
     @POST("/houses/houses/")
     suspend fun addHouseDescription(@Body houseRequest: HouseRequest, @Header("Authorization") access: String): Response<HouseResponse>
+
+    @Headers("Content-Type: application/json")
+    @POST("/houses/images/")
+    suspend fun  addHouseImages(@Body houseImageRequest: HouseImageRequest, @Header("Authorization") access: String): Response<HouseImageResponse>
 }

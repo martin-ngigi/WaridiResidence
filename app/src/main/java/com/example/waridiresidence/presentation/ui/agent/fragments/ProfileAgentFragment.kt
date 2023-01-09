@@ -3,6 +3,7 @@ package com.example.waridiresidence.presentation.ui.agent.fragments
 import android.app.Activity
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -23,6 +24,9 @@ import com.example.waridiresidence.util.Utils.validateProfileRequest
 import com.github.dhaval2404.imagepicker.ImagePicker
 import com.google.android.material.button.MaterialButton
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.android.synthetic.main.progress_bar.view.*
+
+//import kotlinx.android.synthetic.main.fragment_profile_agent.view.*
 
 @AndroidEntryPoint
 class ProfileAgentFragment : Fragment(R.layout.fragment_profile_agent) {

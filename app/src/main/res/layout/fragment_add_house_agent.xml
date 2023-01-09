@@ -164,6 +164,18 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/addHouseDescBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textInputLayoutPrice"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="5dp"
+            android:text="Upload Description"
+            android:textAllCaps="false" />
+
     </RelativeLayout>
 
     <!--Add Home Images -->
@@ -171,14 +183,26 @@
         android:id="@+id/addHomeImagesRL"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:visibility="gone"
         android:layout_below="@+id/addHomeDesRL"
-        android:padding="10dp">
+        android:padding="10dp"
+        android:visibility="gone">
+
+
+        <TextView
+            android:id="@+id/descTv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Add house modules\ni.e kitchen, bedroom, washrooms"
+            android:textAlignment="center"
+            android:textColor="@color/green"
+            android:textSize="15sp"
+            android:textStyle="bold" />
 
         <androidx.cardview.widget.CardView
             android:id="@+id/imageCardView"
             android:layout_width="match_parent"
             android:layout_height="200dp"
+            android:layout_below="@+id/descTv"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
             android:background="@color/white"
@@ -192,37 +216,45 @@
                 android:layout_width="match_parent"
                 android:layout_height="200dp">
 
-            <ImageView
-                android:id="@+id/shopIvSD"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:scaleType="centerCrop"
-                android:src="@drawable/house"/>
-
                 <ImageView
+                    android:id="@+id/houseImageView"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:src="#79000000" />
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/house" />
 
-                <TextView
-                    android:id="@+id/tv_house"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:text="Add Image"
-                    android:textColor="@color/white"
-                    android:textSize="24sp"
-                    android:textStyle="bold" />
+                <RelativeLayout
+                    android:id="@+id/imageCoverRL"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
 
-                <TextView
-                    android:id="@+id/tv_description"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/tv_house"
-                    android:layout_centerInParent="true"
-                    android:text="click to add"
-                    android:textColor="@color/white"
-                    android:textSize="20sp" />
+                    <ImageView
+                        android:id="@+id/imageTransparency"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:src="#79000000" />
+
+                    <TextView
+                        android:id="@+id/tv_house"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:text="Add Image"
+                        android:textColor="@color/white"
+                        android:textSize="24sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tv_description"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/tv_house"
+                        android:layout_centerInParent="true"
+                        android:text="click to add"
+                        android:textColor="@color/white"
+                        android:textSize="20sp" />
+                </RelativeLayout>
+
 
             </RelativeLayout>
 
@@ -233,13 +265,13 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/imageCardView"
             android:textColorHint="@color/black"
             app:boxBackgroundColor="@color/white"
             app:boxBackgroundMode="outline"
             app:boxCornerRadiusBottomEnd="10dp"
             app:boxCornerRadiusBottomStart="10dp"
             app:boxCornerRadiusTopEnd="10dp"
-            android:layout_below="@+id/imageCardView"
             app:boxCornerRadiusTopStart="10dp"
             app:boxStrokeColor="@color/green"
             app:startIconDrawable="@drawable/ic_baseline_edit_24"
@@ -285,7 +317,7 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/addHomeBtn"
+            android:id="@+id/addHomeImagesBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/textInputLayoutdesImage"
@@ -296,7 +328,7 @@
             android:layout_marginEnd="5dp"
             android:layout_marginRight="20dp"
             android:layout_marginBottom="5dp"
-            android:text="Add Another Image"
+            android:text="Upload Only this Image"
             android:textAllCaps="false" />
 
     </RelativeLayout>
@@ -306,7 +338,6 @@
         android:id="@+id/congratsRL"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/addHouseBtn"
         android:visibility="gone"
         android:layout_below="@+id/addHomeDesRL"
         >
@@ -317,6 +348,7 @@
             android:layout_height="match_parent"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
+            android:layout_above="@id/proceedHomeBtn"
             android:background="@color/white"
             app:cardCornerRadius="25dp"
             app:cardElevation="10dp">
@@ -325,6 +357,7 @@
             <RelativeLayout
                 android:id="@+id/congratsInnerRL"
                 android:layout_width="match_parent"
+                android:background="@color/white"
                 android:layout_height="match_parent">
 
                 <com.airbnb.lottie.LottieAnimationView
@@ -343,7 +376,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
                     android:fontFamily="@font/anterobot1"
-                    android:text="Congratulations"
+                    android:text="."
                     android:textColor="@color/green"
                     android:textSize="30sp"
                     android:textStyle="bold|italic" />
@@ -363,19 +396,22 @@
 
         </androidx.cardview.widget.CardView>
 
-    </RelativeLayout>
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/proceedHomeBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginStart="5dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="5dp"
+            android:text="Proceed to home page"
+            android:textAllCaps="false" />
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/addHouseBtn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginEnd="5dp"
-        android:layout_marginBottom="5dp"
-        android:text="Next"
-        android:textAllCaps="false" />
+    </RelativeLayout>
 
     <include
         android:id="@+id/progressBar"

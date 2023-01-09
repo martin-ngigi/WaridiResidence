@@ -43,7 +43,7 @@ android {
      * MARTIN ADDED THIS
      */
     buildFeatures{
-        viewBinding = true
+        viewBinding true
     }
     kapt {
         correctErrorTypes true

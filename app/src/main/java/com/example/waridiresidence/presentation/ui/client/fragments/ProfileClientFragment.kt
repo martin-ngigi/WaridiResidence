@@ -23,6 +23,7 @@ import com.example.waridiresidence.util.Utils.validateProfileRequest
 import com.github.dhaval2404.imagepicker.ImagePicker
 import com.google.android.material.button.MaterialButton
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.android.synthetic.main.progress_bar.view.*
 
 @AndroidEntryPoint
 class ProfileClientFragment : Fragment(R.layout.fragment_profile_client) {
@@ -41,7 +42,7 @@ class ProfileClientFragment : Fragment(R.layout.fragment_profile_client) {
         val resultCode = result.resultCode
         val data = result.data
         if (resultCode == Activity.RESULT_OK){
-            binding.loginProgress.loadingProgress.hide()
+            binding.loginProgress.loadingProgress.visibility = View.GONE
             val fileUri = data?.data!!
             imageUri = fileUri
             isImageSelected = true

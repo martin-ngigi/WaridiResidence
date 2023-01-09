@@ -9,5 +9,14 @@
         android:id="@+id/addHouseAgentFragment"
         android:name="com.example.waridiresidence.presentation.ui.agent.fragments.AddHouseAgentFragment"
         android:label="fragment_add_house_agent"
-        tools:layout="@layout/fragment_add_house_agent" />
+        tools:layout="@layout/fragment_add_house_agent" >
+        <action
+            android:id="@+id/action_addHouseAgentFragment_to_homeAgentFragment"
+            app:destination="@id/homeAgentFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/homeAgentFragment"
+        android:name="com.example.waridiresidence.presentation.ui.agent.fragments.HomeAgentFragment"
+        android:label="fragment_home_agent"
+        tools:layout="@layout/fragment_home_agent" />
 </navigation>

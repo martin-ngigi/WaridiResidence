@@ -77,6 +77,16 @@ object Utils {
         return ValidationResult(true)
     }
 
+    fun validateHouseImages(
+        imageTitle: String,
+        imageDescription: String,
+    ):ValidationResult{
+        if (imageTitle.isEmpty()) return  ValidationResult(false, "Image Title Cant be empty")
+        if (imageDescription.isEmpty()) return  ValidationResult(false, "Image Description Cant be empty")
+
+        return ValidationResult(true)
+    }
+
     fun Context.toast(message: String) =
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
 
