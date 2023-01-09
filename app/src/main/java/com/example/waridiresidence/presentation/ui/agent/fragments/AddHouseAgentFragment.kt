@@ -43,6 +43,7 @@ class AddHouseAgentFragment: Fragment(R.layout.fragment_add_house_agent){
     lateinit var imageTitle: String
     lateinit var imageDescription: String
     private lateinit var imageUri: Uri
+    private  var  imageUriString =""
 
     private val TAG = "AddHouseAgentFragment"
 
@@ -56,6 +57,7 @@ class AddHouseAgentFragment: Fragment(R.layout.fragment_add_house_agent){
             hideProgressBar()
             val fileUri = data?.data!!
             imageUri = fileUri
+            imageUriString= imageUri.toString()
             binding.imageCoverRL.visibility = View.GONE
 
             Glide.with(requireContext())
@@ -144,7 +146,8 @@ class AddHouseAgentFragment: Fragment(R.layout.fragment_add_house_agent){
             imageTitle = binding.titleImageEt.text.toString()
             imageDescription = binding.descriptionImageTv.text.toString()
 
-            val result = validateHouseImages(imageTitle, imageDescription)
+
+            val result = validateHouseImages(imageTitle, imageDescription, imageUriString)
             if (result.successful){
                 showProgressBar()
                 uploadImageToStorage()
@@ -168,7 +171,7 @@ class AddHouseAgentFragment: Fragment(R.layout.fragment_add_house_agent){
             imageTitle = binding.titleImageEt.text.toString()
             imageDescription = binding.descriptionImageTv.text.toString()
 
-            val result = validateHouseImages(imageTitle, imageDescription)
+            val result = validateHouseImages(imageTitle, imageDescription, imageUriString)
             if (result.successful){
                 showProgressBar()
                 uploadImageToStorage()
@@ -180,8 +183,13 @@ class AddHouseAgentFragment: Fragment(R.layout.fragment_add_house_agent){
         }
 
         binding.nextBtn.setOnClickListener{
-            binding.addHomeImagesRL.visibility = View.GONE
-            binding.congratsRL.visibility = View.VISIBLE
+            if (imageTitle.isNotEmpty() || imageDescription.isNotEmpty()){
+                binding.addHomeImagesRL.visibility = View.GONE
+                binding.congratsRL.visibility = View.VISIBLE
+            }
+            else{
+                toast("Please upload image ")
+            }
         }
 
     }
@@ -191,7 +199,7 @@ class AddHouseAgentFragment: Fragment(R.layout.fragment_add_house_agent){
             imageTitle,
             Constants.currentHouseId,
             imageDescription,
-            imageUri.toString()
+            imageUriString
         )
         viewModel.addHouseImages(houseImageRequest)
         viewModel.addHouseImages.observe( viewLifecycleOwner, Observer {  event ->
@@ -299,4 +307,6 @@ class AddHouseAgentFragment: Fragment(R.layout.fragment_add_house_agent){
     private fun hideProgressBar() {
         binding.progressBar.loadingProgress.visibility = View.GONE
     }
+
+
 }

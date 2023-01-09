@@ -80,9 +80,11 @@ object Utils {
     fun validateHouseImages(
         imageTitle: String,
         imageDescription: String,
+        imageUri: String
     ):ValidationResult{
         if (imageTitle.isEmpty()) return  ValidationResult(false, "Image Title Cant be empty")
         if (imageDescription.isEmpty()) return  ValidationResult(false, "Image Description Cant be empty")
+        if (imageUri.isEmpty()) return  ValidationResult(false, "Image Cant be empty, please select image")
 
         return ValidationResult(true)
     }
