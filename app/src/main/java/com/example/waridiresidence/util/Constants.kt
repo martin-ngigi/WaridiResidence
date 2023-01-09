@@ -15,6 +15,7 @@ class Constants {
         var hasHouses = false
         var idUserHouse=0
         var currentHouseId: Int = 0
+        var house_image_uri= ""
 
     }
 

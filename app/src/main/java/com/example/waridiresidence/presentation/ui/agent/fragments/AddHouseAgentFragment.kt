@@ -199,7 +199,7 @@ class AddHouseAgentFragment: Fragment(R.layout.fragment_add_house_agent){
             imageTitle,
             Constants.currentHouseId,
             imageDescription,
-            imageUriString
+            Constants.house_image_uri
         )
         viewModel.addHouseImages(houseImageRequest)
         viewModel.addHouseImages.observe( viewLifecycleOwner, Observer {  event ->
@@ -214,11 +214,18 @@ class AddHouseAgentFragment: Fragment(R.layout.fragment_add_house_agent){
                             if (text.equals("one")){
                                 binding.addHomeImagesRL.visibility = View.GONE
                                 binding.congratsRL.visibility = View.VISIBLE
+
+                                //clear all constants
+                                Constants.house_image_uri = ""
+                                Constants.currentHouseId = 0
                             }
                             else if (text.equals("two")){
+                                //clear all constants and edit texts
                                 binding.titleImageEt.setText("")
                                 binding.descriptionImageTv.setText("")
                                 binding.houseImageView.setImageDrawable(resources.getDrawable(R.drawable.house))
+                                Constants.house_image_uri = ""
+                                Constants.currentHouseId = 0
                                 binding.nextBtn.visibility = View.VISIBLE
                             }
 

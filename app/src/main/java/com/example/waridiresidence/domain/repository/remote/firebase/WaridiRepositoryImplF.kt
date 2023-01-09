@@ -5,6 +5,7 @@ import com.example.waridiresidence.util.Constants
 import com.example.waridiresidence.util.Constants.FirebaseStorageConstants.HOUSE_IMAGES
 import com.example.waridiresidence.util.Constants.FirebaseStorageConstants.PROFILE_IMAGES
 import com.example.waridiresidence.util.UiState
+import com.example.waridiresidence.util.toast
 import com.google.firebase.FirebaseException
 import com.google.firebase.storage.StorageReference
 import kotlinx.coroutines.Dispatchers
@@ -84,7 +85,7 @@ class WaridiRepositoryImplF(
                     .await()
                     .storage
                     .downloadUrl
-                    //.addOnSuccessListener { Constants.profile_image = it.toString() } //save image uri to constants
+                    .addOnSuccessListener { Constants.house_image_uri = it.toString() } //save image uri to constants
                     .await()
 
             }
