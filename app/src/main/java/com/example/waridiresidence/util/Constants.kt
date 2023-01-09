@@ -21,5 +21,6 @@ class Constants {
     object FirebaseStorageConstants{
         val ROOT_DIRECTORY= "waridi"
         val  PROFILE_IMAGES = "profile"
+        val  HOUSE_IMAGES = "house"
     }
 }

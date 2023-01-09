@@ -150,7 +150,7 @@ class AddHouseViewModel @Inject constructor(
     fun onUploadSingleFile(fileUris: Uri, onResult: (UiState<Uri>) -> Unit){
         onResult.invoke(UiState.Loading)
         viewModelScope.launch {
-            repositoryFirebase.uploadSingleFile(fileUris, onResult)
+            repositoryFirebase.uploadSingleHouseFile(fileUris, onResult)
         }
     }
 
