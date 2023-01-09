@@ -1,6 +1,7 @@
 package com.example.waridiresidence.presentation.ui.agent.fragments
 
 import android.app.Activity
+import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
@@ -19,6 +20,7 @@ import com.example.waridiresidence.R
 import com.example.waridiresidence.data.model.modelrequest.house.HouseImageRequest
 import com.example.waridiresidence.data.model.modelrequest.house.HouseRequest
 import com.example.waridiresidence.databinding.FragmentAddHouseAgentBinding
+import com.example.waridiresidence.presentation.ui.agent.activities.HomeAgentActivity
 import com.example.waridiresidence.presentation.ui.agent.viewmodels.AddHouseViewModel
 import com.example.waridiresidence.util.*
 import com.example.waridiresidence.util.Utils.toast
@@ -156,7 +158,9 @@ class AddHouseAgentFragment: Fragment(R.layout.fragment_add_house_agent){
 
         //proceed to home
         binding.proceedHomeBtn.setOnClickListener{
-            findNavController().navigate(R.id.action_addHouseAgentFragment_to_homeAgentFragment)
+            Intent(requireContext(), HomeAgentActivity::class.java).also {
+                startActivity(it)
+            }
         }
 
     }
