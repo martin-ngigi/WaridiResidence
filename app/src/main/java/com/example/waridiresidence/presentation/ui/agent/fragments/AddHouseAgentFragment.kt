@@ -8,6 +8,7 @@ import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
@@ -28,7 +29,6 @@ import com.example.waridiresidence.util.Utils.validateHouseDescription
 import com.example.waridiresidence.util.Utils.validateHouseImages
 import com.github.dhaval2404.imagepicker.ImagePicker
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.progress_bar.view.*
 
 @AndroidEntryPoint
 class AddHouseAgentFragment: Fragment(R.layout.fragment_add_house_agent){
@@ -148,7 +148,7 @@ class AddHouseAgentFragment: Fragment(R.layout.fragment_add_house_agent){
             if (result.successful){
                 showProgressBar()
                 uploadImageToStorage()
-                getHouseImages()
+                getHouseImages("one")
             }
             else{
                 requireContext().toast("${result.error}")
@@ -163,9 +163,30 @@ class AddHouseAgentFragment: Fragment(R.layout.fragment_add_house_agent){
             }
         }
 
+        binding.addHomeMultipleImagesBtn.setOnClickListener {
+            hideKeyboard()
+            imageTitle = binding.titleImageEt.text.toString()
+            imageDescription = binding.descriptionImageTv.text.toString()
+
+            val result = validateHouseImages(imageTitle, imageDescription)
+            if (result.successful){
+                showProgressBar()
+                uploadImageToStorage()
+                getHouseImages("two")
+            }
+            else{
+                requireContext().toast("${result.error}")
+            }
+        }
+
+        binding.nextBtn.setOnClickListener{
+            binding.addHomeImagesRL.visibility = View.GONE
+            binding.congratsRL.visibility = View.VISIBLE
+        }
+
     }
 
-    private fun getHouseImages() {
+    private fun getHouseImages(text: String) {
         val houseImageRequest = HouseImageRequest(
             imageTitle,
             Constants.currentHouseId,
@@ -181,8 +202,18 @@ class AddHouseAgentFragment: Fragment(R.layout.fragment_add_house_agent){
                         response.data?.let { addHouseImagesResponse ->
                             toast("House Images added Successfully ;-)")
                             Log.i(TAG, "House Images added Successfully ;-)")
-                            binding.addHomeImagesRL.visibility = View.GONE
-                            binding.congratsRL.visibility = View.VISIBLE
+
+                            if (text.equals("one")){
+                                binding.addHomeImagesRL.visibility = View.GONE
+                                binding.congratsRL.visibility = View.VISIBLE
+                            }
+                            else if (text.equals("two")){
+                                binding.titleImageEt.setText("")
+                                binding.descriptionImageTv.setText("")
+                                binding.houseImageView.setImageDrawable(resources.getDrawable(R.drawable.house))
+                                binding.nextBtn.visibility = View.VISIBLE
+                            }
+
                         }
                     }
                     is Resource.Error ->{
