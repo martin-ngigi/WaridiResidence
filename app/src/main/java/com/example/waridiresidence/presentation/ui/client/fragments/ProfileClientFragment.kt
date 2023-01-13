@@ -222,7 +222,7 @@ class ProfileClientFragment : Fragment(R.layout.fragment_profile_client) {
     }
 
     private fun uploadImageToStorage() {
-        if (imageUri.toString().isNotEmpty()){
+        if (imageUriString.isNotEmpty()){
             viewModel.onUploadSingleFile(imageUri){state ->
                 when(state){
                     is UiState.Loading -> {

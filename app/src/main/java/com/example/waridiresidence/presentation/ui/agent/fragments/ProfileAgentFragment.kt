@@ -224,7 +224,7 @@ class ProfileAgentFragment : Fragment(R.layout.fragment_profile_agent) {
     }
 
     private fun uploadImageToStorage() {
-        if (imageUri.toString().isNotEmpty()){
+        if (imageUriString.isNotEmpty()){
             viewModel.onUploadSingleFile(imageUri){state ->
                 when(state){
                     is UiState.Loading -> {
