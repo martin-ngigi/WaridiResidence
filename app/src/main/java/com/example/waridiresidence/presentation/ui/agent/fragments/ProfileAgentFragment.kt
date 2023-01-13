@@ -24,7 +24,6 @@ import com.example.waridiresidence.util.Utils.validateProfileRequest
 import com.github.dhaval2404.imagepicker.ImagePicker
 import com.google.android.material.button.MaterialButton
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.progress_bar.view.*
 
 //import kotlinx.android.synthetic.main.fragment_profile_agent.view.*
 
@@ -38,6 +37,7 @@ class ProfileAgentFragment : Fragment(R.layout.fragment_profile_agent) {
     private lateinit var firstName: String
     private lateinit var lastName: String
     private lateinit var phone: String
+    private var imageUriString: String = ""
 
     //open gallery
     private val startForProfileImageResult = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){ result: ActivityResult ->
@@ -47,6 +47,7 @@ class ProfileAgentFragment : Fragment(R.layout.fragment_profile_agent) {
             binding.loginProgress.loadingProgress.hide()
             val fileUri = data?.data!!
             imageUri = fileUri
+            imageUriString = imageUri.toString()
 
             binding.uploadTV.show()
             binding.upLoadBtn.visibility = View.VISIBLE
@@ -158,7 +159,8 @@ class ProfileAgentFragment : Fragment(R.layout.fragment_profile_agent) {
             firstName=firstName,
             lastName = lastName,
             phone = phone,
-            profileImage =  if (imageUri.toString().isNotEmpty()) imageUri.toString() else Constants.profile_image,
+            //profileImage =  if (imageUri.toString().isNotEmpty()) imageUri.toString() else Constants.profile_image,
+            profileImage= imageUriString,
             hasHouses = Constants.hasHouses
         )
 
@@ -168,7 +170,7 @@ class ProfileAgentFragment : Fragment(R.layout.fragment_profile_agent) {
             profileImage = imageUri.toString()
         }
         else{
-            profileImage = Constants.profile_image
+            profileImage = Constants.profile_image2
         }
         */
 
@@ -185,7 +187,7 @@ class ProfileAgentFragment : Fragment(R.layout.fragment_profile_agent) {
                     is Resource.Error -> {
                         hideProgressBar()
                         response.message?.let {
-                            toast(it)
+                            toast(it +" Image: ${imageUriString}")
                         }
                     }
                     is Resource.Loading -> {
@@ -238,6 +240,9 @@ class ProfileAgentFragment : Fragment(R.layout.fragment_profile_agent) {
                         binding.upLoadBtn.visibility = View.GONE
 
                         toast("Image Uploaded successfully.")
+                        Log.i(TAG, "uploadImageToStorage: image uri: ${Constants.current_profile_image}")
+                        imageUriString = Constants.current_profile_image
+
                     }
                 }
             }

@@ -3,6 +3,7 @@ package com.example.waridiresidence.presentation.ui.client.fragments
 import android.app.Activity
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -32,10 +33,10 @@ class ProfileClientFragment : Fragment(R.layout.fragment_profile_client) {
     private val TAG : String = "ProfileFragment"
     private val viewModel: ProfileClientViewModel by viewModels()
     private lateinit var imageUri: Uri
-    private var isImageSelected = false
     private lateinit var firstName: String
     private lateinit var lastName: String
     private lateinit var phone: String
+    private var imageUriString: String = ""
 
     //open gallery
     private val startForProfileImageResult = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){ result: ActivityResult ->
@@ -45,7 +46,7 @@ class ProfileClientFragment : Fragment(R.layout.fragment_profile_client) {
             binding.loginProgress.loadingProgress.visibility = View.GONE
             val fileUri = data?.data!!
             imageUri = fileUri
-            isImageSelected = true
+            imageUriString = imageUri.toString()
 
             binding.uploadTV.show()
             binding.upLoadBtn.visibility = View.VISIBLE
@@ -100,10 +101,7 @@ class ProfileClientFragment : Fragment(R.layout.fragment_profile_client) {
         }
 
         binding.upLoadBtn.setOnClickListener {
-            binding.loginProgress.loadingProgress.show()
-            if (isImageSelected){
-                uploadImageToStorage()
-            }
+            uploadImageToStorage()
             getUserProfileData()
         }
 
@@ -160,7 +158,8 @@ class ProfileClientFragment : Fragment(R.layout.fragment_profile_client) {
             firstName=firstName,
             lastName = lastName,
             phone = phone,
-            profileImage =  if (imageUri.toString().isNotEmpty()) imageUri.toString() else Constants.profile_image
+            //profileImage =  if (imageUri.toString().isNotEmpty()) imageUri.toString() else Constants.profile_image
+            profileImage= imageUriString,
         )
 
         //profileImage is statement
@@ -239,6 +238,9 @@ class ProfileClientFragment : Fragment(R.layout.fragment_profile_client) {
                         binding.upLoadBtn.visibility = View.GONE
 
                         toast("Image Uploaded successfully.")
+                        Log.i(TAG, "uploadImageToStorage: image uri: ${Constants.current_profile_image}")
+                        imageUriString = Constants.current_profile_image
+
                     }
                 }
             }

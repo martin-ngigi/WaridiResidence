@@ -1,11 +1,11 @@
 package com.example.waridiresidence.domain.repository.remote.firebase
 
 import android.net.Uri
+import android.util.Log
 import com.example.waridiresidence.util.Constants
 import com.example.waridiresidence.util.Constants.FirebaseStorageConstants.HOUSE_IMAGES
 import com.example.waridiresidence.util.Constants.FirebaseStorageConstants.PROFILE_IMAGES
 import com.example.waridiresidence.util.UiState
-import com.example.waridiresidence.util.toast
 import com.google.firebase.FirebaseException
 import com.google.firebase.storage.StorageReference
 import kotlinx.coroutines.Dispatchers
@@ -28,8 +28,10 @@ class WaridiRepositoryImplF(
                     .await()
                     .storage
                     .downloadUrl
-                    //.addOnSuccessListener { Constants.profile_image = it.toString() } //save image uri to constants
-                    .await()
+                    .addOnSuccessListener {
+                        Constants.current_profile_image = it.toString()
+                    } //save image uri to constants
+                    .await ()
 
             }
             onResult.invoke(UiState.Success(uri))
