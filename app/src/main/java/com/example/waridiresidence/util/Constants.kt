@@ -1,8 +1,10 @@
 package com.example.waridiresidence.util
 
+import com.example.waridiresidence.data.model.modelresponse.house.AllHousesResult
+
 class Constants {
     companion object{
-        const val BASE_URL = "https://26e3-105-163-0-23.in.ngrok.io"
+        const val BASE_URL = "https://e8a7-105-163-157-112.in.ngrok.io"
         var id: Int=0 //set it to zero.. then it will be updated later
         var fname = ""
         var lname = ""
@@ -17,6 +19,9 @@ class Constants {
         var idUserHouse=0
         var currentHouseId: Int = 0
         var house_image_uri= ""
+
+        lateinit var HOUSE_OBJECT: AllHousesResult
+
 
     }
 

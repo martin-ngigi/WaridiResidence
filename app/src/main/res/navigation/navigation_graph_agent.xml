@@ -13,8 +13,8 @@
             android:id="@+id/action_id_homeAgentFragment_to_add_house_nav_graph"
             app:destination="@id/add_house_nav_graph" />
         <action
-            android:id="@+id/action_id_homeAgentFragment_to_allHousesAgentFragment"
-            app:destination="@id/allHousesAgentFragment" />
+            android:id="@+id/action_id_homeAgentFragment_to_view_houses_agent_graph"
+            app:destination="@id/view_houses_agent_graph" />
     </fragment>
     <fragment
         android:id="@+id/id_profileAgentFragment"
@@ -32,10 +32,6 @@
         android:label="fragment_login"
         tools:layout="@layout/fragment_login" />
     <include app:graph="@navigation/add_house_nav_graph" />
-    <fragment
-        android:id="@+id/allHousesAgentFragment"
-        android:name="com.example.waridiresidence.presentation.ui.agent.fragments.AllHousesAgentFragment"
-        android:label="fragment_all_houses_agent"
-        tools:layout="@layout/fragment_all_houses_agent" />
+    <include app:graph="@navigation/view_houses_agent_graph" />
 
 </navigation>

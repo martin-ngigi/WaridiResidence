@@ -2,10 +2,14 @@ package com.example.waridiresidence.presentation.ui.agent.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.Navigation
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
+import com.example.waridiresidence.R
 import com.example.waridiresidence.data.model.modelresponse.house.AllHousesResult
 import com.example.waridiresidence.databinding.RowHomesBinding
 import com.example.waridiresidence.presentation.ui.agent.viewmodels.AllHousesAgentViewModel
+import com.example.waridiresidence.util.Constants
 
 class AllHomesAgentAdapters(
     var items: List<AllHousesResult>,
@@ -23,10 +27,13 @@ class AllHomesAgentAdapters(
         //set data
         holder.bind(currentHouseItem)
 
-        //onclick
-        holder.itemView.setOnClickListener {
-
+        //or
+        holder.itemView.setOnClickListener{ view ->
+            view.findNavController().navigate(R.id.action_allHousesAgentFragment2_to_singleHouseAgentFragment)
+            //save current list in Constants as to be retrieved upon reaching SingleHouseAgentFragment.. i.e. Passing data
+            Constants.HOUSE_OBJECT = currentHouseItem
         }
+
     }
 
     override fun getItemCount(): Int {

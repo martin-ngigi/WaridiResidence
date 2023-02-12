@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/view_houses_agent_graph"
+    app:startDestination="@id/allHousesAgentFragment2">
+
+    <fragment
+        android:id="@+id/allHousesAgentFragment2"
+        android:name="com.example.waridiresidence.presentation.ui.agent.fragments.AllHousesAgentFragment"
+        android:label="All Houses Agent"
+        tools:layout="@layout/fragment_all_houses_agent" >
+        <action
+            android:id="@+id/action_allHousesAgentFragment2_to_singleHouseAgentFragment"
+            app:destination="@id/singleHouseAgentFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/singleHouseAgentFragment"
+        android:name="com.example.waridiresidence.presentation.ui.agent.fragments.SingleHouseAgentFragment"
+        android:label="Single House Agent"
+        tools:layout="@layout/fragment_single_house_agent" >
+        <argument
+            android:name="title"
+            app:argType="string" />
+        <argument
+            android:name="category"
+            app:argType="string" />
+        <argument
+            android:name="description"
+            app:argType="string" />
+        <argument
+            android:name="location"
+            app:argType="string" />
+        <argument
+            android:name="status"
+            app:argType="string" />
+        <argument
+            android:name="monthly_price"
+            app:argType="integer" />
+    </fragment>
+</navigation>
