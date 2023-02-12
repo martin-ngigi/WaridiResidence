@@ -4,7 +4,7 @@ import com.example.waridiresidence.data.model.modelresponse.house.AllHousesResul
 
 class Constants {
     companion object{
-        const val BASE_URL = "https://e8a7-105-163-157-112.in.ngrok.io"
+        const val BASE_URL = "https://3cda-105-163-157-112.in.ngrok.io"
         var id: Int=0 //set it to zero.. then it will be updated later
         var fname = ""
         var lname = ""

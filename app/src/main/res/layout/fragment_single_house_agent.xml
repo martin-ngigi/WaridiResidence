@@ -9,21 +9,29 @@
     android:background="@color/white"
     tools:context=".presentation.ui.agent.fragments.SingleHouseAgentFragment">
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/images_rv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:listitem="@layout/row_special"
+        />
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/images_rv"
+        >
 
         <TextView
             android:id="@+id/title_tv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="title"
-            android:textSize="30sp"
-            android:fontFamily="@font/anterobot2"
             android:background="@color/white"
+            android:fontFamily="@font/anterobot2"
             android:padding="5dp"
-            android:textColor="@color/black" />
+            android:text="title"
+            android:textColor="@color/black"
+            android:textSize="30sp" />
         <TextView
             android:id="@+id/categoryTv"
             android:layout_width="match_parent"
