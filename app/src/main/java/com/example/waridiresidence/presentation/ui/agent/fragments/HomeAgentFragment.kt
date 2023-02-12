@@ -23,5 +23,10 @@ class HomeAgentFragment:  Fragment(R.layout.fragment_home_agent) {
         binding.addHomeCV.setOnClickListener{
             findNavController().navigate(R.id.action_id_homeAgentFragment_to_add_house_nav_graph)
         }
+
+        //view all houses
+        binding.allHomeCV.setOnClickListener{
+            findNavController().navigate(R.id.action_id_homeAgentFragment_to_allHousesAgentFragment)
+        }
     }
 }

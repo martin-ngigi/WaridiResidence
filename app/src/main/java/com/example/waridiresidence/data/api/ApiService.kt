@@ -11,6 +11,7 @@ import com.example.waridiresidence.data.model.modelresponse.LoginResponse
 import com.example.waridiresidence.data.model.modelresponse.UserClientProfileResponse
 import com.example.waridiresidence.data.model.modelresponse.UserAgentProfileResponse
 import com.example.waridiresidence.data.model.modelresponse.UserResponse
+import com.example.waridiresidence.data.model.modelresponse.house.AllHousesResponse
 import com.example.waridiresidence.data.model.modelresponse.house.HouseImageResponse
 import com.example.waridiresidence.data.model.modelresponse.house.HouseResponse
 import com.example.waridiresidence.data.model.modelresponse.house.UserHouseResponse
@@ -54,4 +55,8 @@ interface ApiService {
     @Headers("Content-Type: application/json")
     @POST("/houses/images/")
     suspend fun  addHouseImages(@Body houseImageRequest: HouseImageRequest, @Header("Authorization") access: String): Response<HouseImageResponse>
+
+    @GET("/houses/houses/")
+    suspend fun getHouses(@Header("Authorization") access: String): Response<AllHousesResponse>
+
 }

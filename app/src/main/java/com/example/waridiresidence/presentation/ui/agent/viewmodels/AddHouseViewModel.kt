@@ -59,7 +59,7 @@ class AddHouseViewModel @Inject constructor(
                         Log.i(TAG, "Adding house Images successful. Response: ${response.body()} ")
 
                     }
-                    else if(response.body()!!.id.toString().isNotEmpty()){
+                    else if(response.body()!!.id.toString().isNullOrEmpty()){
                         val errorResponse: HouseImageResponse? = response.body()
                         toast(getApplication(), "Error encountered while adding house images.\n Hint $errorResponse")
                         Log.e(TAG, "getHouse: Error encountered while adding house images.\n Hint $errorResponse")

@@ -12,6 +12,7 @@ import com.example.waridiresidence.data.model.modelresponse.LoginResponse
 import com.example.waridiresidence.data.model.modelresponse.UserClientProfileResponse
 import com.example.waridiresidence.data.model.modelresponse.UserAgentProfileResponse
 import com.example.waridiresidence.data.model.modelresponse.UserResponse
+import com.example.waridiresidence.data.model.modelresponse.house.AllHousesResponse
 import com.example.waridiresidence.data.model.modelresponse.house.HouseImageResponse
 import com.example.waridiresidence.data.model.modelresponse.house.HouseResponse
 import com.example.waridiresidence.data.model.modelresponse.house.UserHouseResponse
@@ -56,6 +57,10 @@ class RetrofitRepository @Inject constructor(
 
     suspend fun getAddHouseImages(houseImageRequest: HouseImageRequest): Response<HouseImageResponse>{
         return apiService.addHouseImages(houseImageRequest, "Bearer ${Constants.access}")
+    }
+
+    suspend fun getHouses(): Response<AllHousesResponse>{
+        return apiService.getHouses("Bearer ${Constants.access}")
     }
 
 }
